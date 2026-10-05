@@ -1,0 +1,56 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+.logoIcon {
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+  filter: drop-shadow(0 6px 10px rgba(79, 70, 229, 0.3));
+}
+
+.logoText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.logoTitle {
+  margin: 0;
+  font-size: 1.9rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: #0f172a;
+}
+
+.logoTitle span {
+  color: #4f46e5;
+}
+
+.logoTagline {
+  margin: 6px 0 0;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: #64748b;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .logoIcon {
+    width: 38px;
+    height: 38px;
+  }
+
+  .logoTitle {
+    font-size: 1.5rem;
+  }
+
+  .logoTagline {
+    font-size: 0.65rem;
+  }
+}

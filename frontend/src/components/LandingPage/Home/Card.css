@@ -1,0 +1,151 @@
+.cardTitle{
+  text-align: center;
+   padding: 0px 40px;
+  /* background: linear-gradient(180deg, #ffffff 0%, #f8f9ff 100%); */
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+}
+.cardTitle h2{
+    margin: 0 0 12px;
+  font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+  font-weight: 800;
+  color: #141b5a;
+}
+
+.cardTitle p{
+    max-width: 760px;
+  margin: auto;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #64748b;
+  margin-bottom: 30px;
+}
+.cardContainer {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  padding: 40px 50px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8f9ff 100%);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* Single card */
+.cardDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 8px 20px;
+}
+
+/* Vertical divider between cards (desktop) */
+.cardDiv + .cardDiv {
+  border-left: 1px solid #e8eaf5;
+}
+
+/* Icon box */
+.cardIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  margin-bottom: 18px;
+  border-radius: 18px;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.cardIcon i {
+  font-size: 1.6rem;
+  color: #fff;
+}
+
+.cardDiv:hover .cardIcon {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.18);
+}
+
+/* Icon colors */
+.cardIcon.purple { background: linear-gradient(135deg, #a855f7, #7c3aed); }
+.cardIcon.green  { background: linear-gradient(135deg, #34d399, #16a34a); }
+.cardIcon.blue   { background: linear-gradient(135deg, #6b8cff, #4f46e5); }
+.cardIcon.orange { background: linear-gradient(135deg, #fbbf24, #f97316); }
+.cardIcon.red    { background: linear-gradient(135deg, #fb7185, #e11d48); }
+.cardIcon.teal   { background: linear-gradient(135deg, #2dd4bf, #0d9488); }
+
+/* Text */
+.cardDiv h3 {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+  font-weight: 700;
+   color: #141b5a;
+}
+
+.cardDiv p {
+  margin: 0;
+  max-width: 200px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #64748b;
+}
+
+/* ---------- Responsive ---------- */
+
+/* Laptop / small desktop */
+@media (max-width: 1200px) {
+  .cardContainer {
+    padding: 40px 32px;
+  }
+
+  .cardDiv {
+    padding: 8px 12px;
+  }
+}
+
+/* Tablet: 3 columns */
+@media (max-width: 992px) {
+  .cardContainer {
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 40px;
+  }
+
+  /* dividers hatao, grid me ab ache nahi lagte */
+  .cardDiv + .cardDiv {
+    border-left: none;
+  }
+}
+
+/* Mobile: 2 columns */
+@media (max-width: 640px) {
+  .cardContainer {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 32px 16px;
+    row-gap: 32px;
+  }
+
+  .cardIcon {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+  }
+
+  .cardIcon i {
+    font-size: 1.4rem;
+  }
+
+  .cardDiv h3 {
+    font-size: 0.98rem;
+  }
+
+  .cardDiv p {
+    font-size: 0.85rem;
+  }
+}
+
+/* Small phones: 1 column */
+@media (max-width: 420px) {
+  .cardContainer {
+    grid-template-columns: 1fr;
+  }
+}

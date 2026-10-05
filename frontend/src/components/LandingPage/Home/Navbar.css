@@ -1,0 +1,157 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 80px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 16px rgba(15, 23, 42, 0.06);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* Menu wrapper (links + login) */
+.navMenu {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  justify-content: space-between;
+  margin-left: 48px;
+}
+
+.optionsDiv {
+  margin: 0 auto;
+}
+
+.optionsDiv ul {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.optionsDiv li a {
+  position: relative;
+  padding: 6px 0;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #0f172a;
+  transition: color 0.2s;
+}
+
+.optionsDiv li a:hover {
+  color: #4f46e5;
+}
+
+/* Underline animation on hover */
+.optionsDiv li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: #4f46e5;
+  transition: width 0.25s ease;
+}
+
+.optionsDiv li a:hover::after {
+  width: 100%;
+}
+
+/* Login button */
+.loginBtn {
+  display: inline-block;
+  padding: 10px 28px;
+  text-decoration: none;
+  font-weight: 600;
+  color: #fff;
+  background: #4f46e5;
+  border-radius: 10px;
+  box-shadow: 0 8px 18px rgba(79, 70, 229, 0.28);
+  transition: background 0.2s, transform 0.2s;
+}
+
+.loginBtn:hover {
+  background: #4338ca;
+  transform: translateY(-2px);
+}
+
+/* Hamburger (hidden on desktop) */
+.hamburgerBtn {
+  display: none;
+  width: 44px;
+  height: 44px;
+  font-size: 1.4rem;
+  color: #0f172a;
+  background: transparent;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1100px) {
+  .navbar {
+    padding: 12px 32px;
+  }
+
+  .optionsDiv ul {
+    gap: 24px;
+  }
+}
+
+/* Tablet / mobile: hamburger menu */
+@media (max-width: 900px) {
+  .navbar {
+    padding: 10px 20px;
+  }
+
+  .hamburgerBtn {
+    display: block;
+  }
+
+  .navMenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+    margin-left: 0;
+    padding: 24px 20px;
+    background: #fff;
+    box-shadow: 0 16px 24px rgba(15, 23, 42, 0.1);
+  }
+
+  .navMenu.open {
+    display: flex;
+  }
+
+  .optionsDiv {
+    margin: 0;
+  }
+
+  .optionsDiv ul {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+
+  .loginBtn {
+    display: block;
+    text-align: center;
+  }
+}

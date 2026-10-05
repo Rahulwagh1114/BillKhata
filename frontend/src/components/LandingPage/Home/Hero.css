@@ -1,0 +1,135 @@
+.heroPageDiv {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+  padding: 64px 80px;
+  min-height: 80vh;
+  background: linear-gradient(135deg, #f5f7ff 0%, #ffffff 60%);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  margin-top: 30px;
+}
+
+/* Left side */
+.heroContentDiv {
+  flex: 1;
+  max-width: 560px;
+}
+
+.heroBadge {
+  display: inline-block;
+  padding: 8px 16px;
+  margin-bottom: 24px;
+  background: #e8eaff;
+  color: #4338ca;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 999px;
+}
+
+.heroSlogenDiv h1 {
+  margin: 0;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: #0f172a;
+}
+
+.heroHighlight {
+  background: linear-gradient(90deg, #4f46e5, #3b2bd9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.heroSubText {
+  margin: 24px 0 32px;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: #475569;
+}
+
+/* Buttons */
+.heroButtons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.heroButtons button {
+  padding: 14px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.btnPrimary {
+  background: #4f46e5;
+  color: #fff;
+  border: 2px solid #4f46e5;
+  box-shadow: 0 8px 20px rgba(79, 70, 229, 0.3);
+}
+
+.btnPrimary:hover {
+  background: #4338ca;
+  transform: translateY(-2px);
+}
+
+.btnOutline {
+  background: #fff;
+  color: #4f46e5;
+  border: 2px solid #4f46e5;
+}
+
+.btnOutline:hover {
+  background: #eef0ff;
+  transform: translateY(-2px);
+}
+
+/* Checklist */
+.heroChecks {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.9rem;
+  color: #475569;
+}
+
+.heroChecks li::first-letter {
+  color: #10b981;
+  font-weight: 700;
+}
+
+/* Right side */
+.heroImageDiv {
+  flex: 1.2;
+  display: flex;
+  justify-content: center;
+}
+
+.heroImageDiv img {
+  width: 100%;
+  max-width: 720px;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 25px 60px rgba(79, 70, 229, 0.2);
+}
+
+/* Tablet / mobile */
+@media (max-width: 900px) {
+  .heroPageDiv {
+    flex-direction: column;
+    padding: 40px 24px;
+    text-align: center;
+  }
+
+  .heroButtons,
+  .heroChecks {
+    justify-content: center;
+  }
+}
