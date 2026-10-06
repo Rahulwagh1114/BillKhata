@@ -1,0 +1,245 @@
+.heroDiv {
+  flex: 1;
+  min-width: 0; /* stops cards from overflowing the flex container */
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 28px 32px;
+  background-color: #ebedf3;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  overflow-x: auto;
+}
+
+/* Top bar: welcome text + user */
+.heroTopItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.btnInvoice button {
+  width: auto;              /* 75% hata diya */
+  min-width: 180px;         /* lamba karne ke liye */
+  height: 40px;             /* height kam */
+  padding: 0 28px;          /* upar-neeche padding 0, sirf side me */
+  white-space: nowrap;      /* text ek hi line me rahe */
+
+  background: linear-gradient(135deg, #535db5, #6c77e0);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(83, 93, 181, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btnInvoice button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(83, 93, 181, 0.5);
+  background: linear-gradient(135deg, #4a54a8, #5f6bd6);
+}
+
+.btnInvoice button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(83, 93, 181, 0.4);
+}
+
+.btnInvoice button:focus-visible {
+  outline: 3px solid rgba(83, 93, 181, 0.4);
+  outline-offset: 2px;
+}
+
+.heroWelcome h3 {
+  margin: 0 0 4px;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #141b5a;
+}
+
+.heroWelcome p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: #64748b;
+}
+
+.heroUser {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.heroHomeLink {
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: #3b4570;
+  transition: color 0.2s;
+}
+
+.heroHomeLink:hover {
+  color: #4f46e5;
+}
+
+.loginShow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px 6px 6px;
+  background: #ffffff;
+  border: 1px solid #eef0fa;
+  border-radius: 999px;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.08);
+}
+
+.loginAvatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, #6d7bff, #4f46e5);
+  border-radius: 50%;
+}
+
+.loginName {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #141b5a;
+}
+
+/* Tablet / mobile: sidebar is off-canvas, leave room for the hamburger */
+@media (max-width: 900px) {
+  .heroDiv {
+    padding: 76px 16px 24px;
+  }
+
+  .heroTopItem {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 560px) {
+  .loginName {
+    display: none;
+  }
+
+  .loginShow {
+    padding: 4px;
+  }
+}
+.statCards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+.statCard {
+  padding: 15px;
+  background: #ffffff;
+  border: 1px solid #eef0fa;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.statCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(79, 70, 229, 0.14);
+}
+
+/* Icon + label row */
+.statTop {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.statIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  font-size: 1.2rem;
+  border-radius: 12px;
+}
+
+.statIcon.blue   { color: #3b5bfd; background: #e4e9ff; }
+.statIcon.green  { color: #16a34a; background: #dcfce7; }
+.statIcon.orange { color: #f97316; background: #ffe8d1; }
+.statIcon.purple { color: #7c3aed; background: #ede4ff; }
+
+.statLabel {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #3b4570;
+}
+
+/* Value */
+.statValue {
+  margin: 0 0 12px;
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: #141b5a;
+}
+
+.statValue.danger {
+  color: #ef0000;
+}
+
+/* Change row */
+.statChange {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 0.85rem;
+  color: #4b5a8a;
+}
+
+.statArrow {
+  font-weight: 700;
+  color: #16a34a;
+}
+
+.statArrow i {
+  font-size: 0.8rem;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1100px) {
+  .statCards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .statCards {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .statCard {
+    padding: 16px;
+  }
+
+  .statValue {
+    font-size: 1.5rem;
+  }
+}
