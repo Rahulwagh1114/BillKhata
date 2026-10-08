@@ -1,22 +1,23 @@
 import { useState, useEffect } from "react";
 import Logo from "../LandingPage/Home/Logo";
 import "./Sidebar.css";
+import {NavLink} from "react-router-dom";
+
 
 const menuItems = [
-  { name: "Dashboard", icon: "fa-solid fa-house" },
-  { name: "Invoices", icon: "fa-solid fa-file-lines" },
-  { name: "Customers", icon: "fa-solid fa-user-group" },
-  { name: "Products", icon: "fa-solid fa-bag-shopping" },
-//   { name: "Inventory", icon: "fa-solid fa-boxes-stacked" },
-  { name: "Payments", icon: "fa-solid fa-wallet" },
-//   { name: "Expenses", icon: "fa-solid fa-receipt" },
-  { name: "Reports", icon: "fa-solid fa-chart-column" },
-//   { name: "Staff", icon: "fa-solid fa-users" },
-  { name: "Settings", icon: "fa-solid fa-gear" },
+  { name: "Dashboard", icon: "fa-solid fa-house", path: "/dashboard", end: true },
+  { name: "Invoices", icon: "fa-solid fa-file-lines", path: "/dashboard/invoices" },
+  { name: "Customers", icon: "fa-solid fa-user-group", path: "/dashboard/customers" },
+  { name: "Products", icon: "fa-solid fa-bag-shopping", path: "/dashboard/products" },
+  //   { name: "Inventory", icon: "fa-solid fa-boxes-stacked" },
+  { name: "Payments", icon: "fa-solid fa-wallet", path: "/dashboard/payments" },
+  //   { name: "Expenses", icon: "fa-solid fa-receipt" },
+  { name: "Reports", icon: "fa-solid fa-chart-column", path: "/dashboard/reports" },
+  //   { name: "Staff", icon: "fa-solid fa-users" },
+  { name: "Settings", icon: "fa-solid fa-gear", path: "/dashboard/settings" },
 ];
 
 function Sidebar() {
-  const [active, setActive] = useState("Dashboard");
   const [isOpen, setIsOpen] = useState(false);
 
   const openSidebar = () => setIsOpen(true);
@@ -73,18 +74,10 @@ function Sidebar() {
           <ul>
             {menuItems.map((item) => (
               <li key={item.name}>
-                <a
-                  href="#"
-                  className={active === item.name ? "active" : ""}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setActive(item.name);
-                    closeSidebar();
-                  }}
-                >
-                  <i className={item.icon}></i>
-                  <span>{item.name}</span>
-                </a>
+              <NavLink to={item.path} end={item.end} onClick={closeSidebar}>
+              <i className={item.icon}></i>
+               <span>{item.name}</span>
+               </NavLink>
               </li>
             ))}
           </ul>

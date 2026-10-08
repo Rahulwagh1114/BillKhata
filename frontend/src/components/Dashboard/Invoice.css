@@ -1,0 +1,353 @@
+.invoiceDiv {
+  flex: 1;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 28px 32px;
+  background-color: #ebedf3;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+.invoiceHeading {
+  margin: 0 0 20px;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #141b5a;
+}
+
+/* Cards */
+.invoiceCard {
+  margin-bottom: 20px;
+  padding: 20px;
+  background: #ffffff;
+  border: 1px solid #eef0fa;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.06);
+}
+
+.invoiceCard h3 {
+  margin: 0 0 16px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #141b5a;
+}
+
+/* Inputs (shared) */
+.invoiceDiv input[type="text"],
+.invoiceDiv input[type="tel"],
+.invoiceDiv input[type="number"],
+.invoiceDiv input[type="date"],
+.invoiceDiv select,
+.invoiceDiv textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  font-family: inherit;
+  font-size: 0.92rem;
+  color: #1e293b;
+  background: #ffffff;
+  border: 1px solid #dfe3f3;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.invoiceDiv input:focus,
+.invoiceDiv select:focus,
+.invoiceDiv textarea:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+}
+
+.invoiceDiv textarea {
+  resize: vertical;
+}
+
+/* Hide number input arrows */
+.invoiceDiv input[type="number"]::-webkit-outer-spin-button,
+.invoiceDiv input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.invoiceDiv input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Customer form */
+.invoiceFormGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.invoiceField {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.invoiceField.fullWidth {
+  grid-column: 1 / -1;
+}
+
+.invoiceField label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #3b4570;
+}
+
+/* Table */
+.invoiceTableWrap {
+  overflow-x: auto;
+}
+
+.invoiceTable {
+  width: 100%;
+  min-width: 620px;
+  border-collapse: collapse;
+}
+
+.invoiceTable th {
+  padding: 10px 8px;
+  text-align: left;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #64748b;
+  background: #f4f6ff;
+}
+
+.invoiceTable th:first-child {
+  border-radius: 8px 0 0 8px;
+}
+
+.invoiceTable th:last-child {
+  border-radius: 0 8px 8px 0;
+}
+
+.invoiceTable td {
+  padding: 10px 8px;
+  border-bottom: 1px solid #eef0fa;
+}
+
+.invoiceTable td:nth-child(1) { width: 34%; }
+.invoiceTable td:nth-child(2) { width: 16%; }
+.invoiceTable td:nth-child(3) { width: 20%; }
+.invoiceTable td:nth-child(4) { width: 22%; }
+.invoiceTable td:nth-child(5) { width: 8%; text-align: center; }
+
+.rowDelete {
+  width: 36px;
+  height: 36px;
+  font-size: 1rem;
+  color: #ef4444;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.rowDelete:hover {
+  background: #ffe9ec;
+}
+
+/* Add product + totals */
+.invoiceBelowTable {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  margin-top: 16px;
+}
+
+.addProductBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 4px;
+  font-family: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #4f46e5;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.addProductBtn:hover {
+  color: #3730a3;
+}
+
+.invoiceTotals {
+  width: 100%;
+  max-width: 280px;
+}
+
+.totalRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 8px 0;
+  font-size: 0.92rem;
+  color: #3b4570;
+}
+
+.totalRow strong {
+  color: #141b5a;
+}
+
+.totalRow input {
+  max-width: 110px;
+  text-align: right;
+}
+
+.grandTotal {
+  margin-top: 6px;
+  padding-top: 14px;
+  border-top: 1px solid #e2e6f5;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #141b5a;
+}
+
+.grandTotal strong {
+  font-size: 1.3rem;
+}
+
+/* Payment status + notes */
+.invoiceBottomGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.invoiceBottomGrid .invoiceCard {
+  margin-bottom: 0;
+}
+
+.paymentOptions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+}
+
+.radioLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.92rem;
+  color: #3b4570;
+  cursor: pointer;
+}
+
+.radioLabel input {
+  width: 18px;
+  height: 18px;
+  accent-color: #4f46e5;
+  cursor: pointer;
+}
+
+/* Partial payment split + due date */
+.paymentSplit {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.dueDateField {
+  margin-top: 16px;
+}
+
+/* Balance field: auto-calculated, so it looks disabled */
+.readOnlyInput {
+  font-weight: 700;
+  color: #e11d48 !important;
+  background: #fff5f7 !important;
+  cursor: not-allowed;
+}
+
+/* Action buttons */
+.invoiceActions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.invoiceActions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 28px;
+  font-family: inherit;
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.invoiceActions button:hover {
+  transform: translateY(-2px);
+}
+
+.btnGenerate {
+  background: #3d5afe;
+  box-shadow: 0 8px 18px rgba(61, 90, 254, 0.3);
+}
+
+.btnGenerate:hover {
+  background: #2f49e0;
+}
+
+.btnWhatsapp {
+  background: #22c55e;
+  box-shadow: 0 8px 18px rgba(34, 197, 94, 0.3);
+}
+
+.btnWhatsapp:hover {
+  background: #16a34a;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  /* leave room for the sidebar hamburger button */
+  .invoiceDiv {
+    padding: 76px 16px 24px;
+  }
+}
+
+@media (max-width: 700px) {
+  .invoiceFormGrid,
+  .invoiceBottomGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .invoiceBelowTable {
+    flex-direction: column;
+  }
+
+  .invoiceTotals {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .invoiceActions {
+    flex-direction: column;
+  }
+
+  .invoiceActions button {
+    width: 100%;
+  }
+
+  .paymentSplit {
+    grid-template-columns: 1fr;
+  }
+}
