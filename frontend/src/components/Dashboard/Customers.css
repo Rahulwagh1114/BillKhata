@@ -1,0 +1,137 @@
+/* Outer wrapper: ye DashboardLayout ka direct child hai, isliye ye bachi hui poori width lega */
+.customerPage {
+  flex: 1;
+  min-width: 0;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 28px 32px;
+  background-color: #ebedf3;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* Inner block: wrapper ki poori width, apna padding/background nahi */
+.customerTopDiv {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 24px;
+}
+
+.customerTopDiv .customerTopContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+ .customerTopDiv .cutomTitle{
+  margin: 0 0 20px;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #141b5a;
+ }
+
+ .searchBox {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+}
+
+.searchIcon {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  transform: translateY(-50%);
+  font-size: 0.9rem;
+  color: #94a3b8;
+  pointer-events: none;
+  transition: color 0.2s;
+}
+
+.searchInput {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 11px 16px 11px 40px; /* left padding makes room for the icon */
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 0.92rem;
+  color: #1e293b;
+  background: #ffffff;
+  border: 1px solid #dfe3f3;
+  border-radius: 10px;
+  outline: none;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.05);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.searchInput::placeholder {
+  color: #94a3b8;
+}
+
+.searchInput:hover {
+  border-color: #c7cbff;
+}
+
+.searchInput:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.14);
+}
+
+/* Icon turns blue when the input is focused */
+.searchBox:focus-within .searchIcon {
+  color: #4f46e5;
+}
+
+.customerTopDiv .btnAddCustm{
+    width: auto;              /* 75% hata diya */
+  min-width: 180px;         /* lamba karne ke liye */
+  height: 40px;             /* height kam */
+  padding: 0 28px;          /* upar-neeche padding 0, sirf side me */
+  white-space: nowrap;      /* text ek hi line me rahe */
+
+  background: linear-gradient(135deg, #535db5, #6c77e0);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(83, 93, 181, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+}
+
+
+/* search box ko flex me shrink hone se roko */
+.customerTopDiv .searchBox {
+  flex: 1;
+  max-width: 360px;
+}
+
+/* button apni size me rahe */
+.customerTopDiv .btnAddCustm {
+  flex-shrink: 0;
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  .customerPage {
+    padding: 76px 16px 24px; /* hamburger ke liye jagah */
+  }
+}
+
+@media (max-width: 560px) {
+  .customerTopDiv .customerTopContent {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .customerTopDiv .searchBox {
+    max-width: 100%;
+  }
+}
+
