@@ -105,6 +105,22 @@
 
 }
 
+.customerTopDiv .btnAddCustm:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(83, 93, 181, 0.5);
+  background: linear-gradient(135deg, #4a54a8, #5f6bd6);
+}
+
+.customerTopDiv .btnAddCustm:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(83, 93, 181, 0.4);
+}
+
+.customerTopDiv .btnAddCustm:focus-visible {
+  outline: 3px solid rgba(83, 93, 181, 0.4);
+  outline-offset: 2px;
+}
+
 
 /* search box ko flex me shrink hone se roko */
 .customerTopDiv .searchBox {
@@ -135,3 +151,126 @@
   }
 }
 
+
+
+.customerListDiv {
+  width: 100%;
+   max-height: calc(100vh - 260px); /* table ki max height, screen ke hisaab se */
+  overflow: auto;
+  background: #ffffff;
+  border: 1px solid #eef0fa;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.06);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+.customerListDiv table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+}
+
+/* Header */
+.customerListDiv th {
+  padding: 14px 20px;
+  text-align: left;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: #64748b;
+  background: #f4f6ff;
+  white-space: nowrap;
+    position: sticky;
+  top: 0;
+  z-index: 2;
+  
+}
+
+/* Cells */
+.customerListDiv td {
+  padding: 14px 20px;
+  font-size: 0.92rem;
+  color: #334155;
+  border-bottom: 1px solid #eef0fa;
+  white-space: nowrap;
+}
+
+.customerListDiv tbody tr {
+  transition: background 0.2s;
+}
+
+.customerListDiv tbody tr:hover {
+  background: #f8f9ff;
+}
+
+.customerListDiv tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Column colors: 1 = name, 4 = pending, 5 = paid */
+.customerListDiv td:nth-child(1) {
+  font-weight: 600;
+  color: #141b5a;
+}
+
+.customerListDiv td:nth-child(3) {
+  font-weight: 600;
+}
+
+.customerListDiv td:nth-child(4) {
+  font-weight: 700;
+  color: #e11d48;
+}
+
+.customerListDiv td:nth-child(5) {
+  font-weight: 600;
+  color: #16a34a;
+}
+
+/* Action column (last) */
+.customerListDiv th:last-child,
+.customerListDiv td:last-child {
+  text-align: center;
+  width: 90px;
+}
+
+/* Icon button */
+.customerListDiv td button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  font-size: 1rem;
+  color: #4f46e5;
+  background: #eef0ff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.customerListDiv td button:hover {
+  color: #ffffff;
+  background: #4f46e5;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(79, 70, 229, 0.3);
+}
+
+
+
+.userAvatar {
+  display: inline-flex;  
+  align-items: center;
+  justify-content: center;
+   vertical-align: middle;     /* text ke saath beech me align */
+  margin-right: 12px;         /* avatar aur name ke beech gap */
+  width: 34px;
+  height: 34px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, #6d7bff, #4f46e5);
+  border-radius: 50%;
+}

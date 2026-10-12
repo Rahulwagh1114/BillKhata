@@ -5,6 +5,7 @@ import Hero from './components/Dashboard/Hero';
 import Invoice from './components/Dashboard/Invoice';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Customers from './components/Dashboard/Customers';
+import CustomerLedger from './components/Dashboard/CustomerLedger';
 
 function App() {
   return (
@@ -16,6 +17,9 @@ function App() {
           <Route index element={<Hero />} />
           <Route path="invoices" element={<Invoice />} />
           <Route path="customers" element={<Customers/>}/>
+          <Route path="customerLedger" element={<CustomerLedger/>}/>
+          
+          {/* <Route path="customers/:id/ledger" element={<CustomerLedger />} /> */}
         </Route>
       </Routes>
     </BrowserRouter>
