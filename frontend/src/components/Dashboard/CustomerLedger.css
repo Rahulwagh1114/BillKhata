@@ -12,6 +12,7 @@
   font-size: 1.6rem;
   font-weight: 700;
   color: #141b5a;
+  margin: 16px;
 }
 .customerLedgerDiv .searchBox1{
      position: relative;
@@ -64,143 +65,225 @@
 
 
 
-.customerLedgerIcon{
- background-color: #ffffff;
- padding: 28px 32px;
+/* Green box → professional white card */
+.customerLedgerIcon {
+  padding: 24px;
+  background: #ffffff;
+  border: 1px solid #eef0fa;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(79, 70, 229, 0.07);
 }
-.customerLedgerIcon .ledgerIcon{
+
+/* Customer header (avatar + name + number) */
+.customerLedgerIcon .ledgerIcon {
   display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eef0fa;
 }
-.ledgerIcon h2{
-      margin: 0 0 0 5px;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #141b5a;
-}
-.ledgerIcon .ledgerIconData {
-     color: #141b5a;
-     opacity: 0.8;
-}
- .customerLedgerIcon .ledgerCard{
-   display: flex;
+
+
+.customerLedgerIcon .ledgerIcon p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #64748b;
 }
 
 .userAvatar1 {
-  display: inline-flex;  
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-   vertical-align: middle;     /* text ke saath beech me align */
-  margin-right: 12px;         /* avatar aur name ke beech gap */
-  width: 40px;
-  height: 40px;
-  font-size: 0.85rem;
+  flex-shrink: 0;
+  margin-right: 0;           /* gap flex se aa raha hai */
+  width: 48px;
+  height: 48px;
+  font-size: 1.05rem;
   font-weight: 700;
   color: #fff;
   background: linear-gradient(135deg, #6d7bff, #4f46e5);
   border-radius: 50%;
+  box-shadow: 0 6px 14px rgba(79, 70, 229, 0.3);
 }
 
-.statCards {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+/* 3 equal stat cards */
+.customerLedgerIcon .statCards {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
 }
 
-.statCard {
-  padding: 15px;
+.customerLedgerIcon .statCard {
+  margin-top: 0;
+  padding: 18px;
+ background: #ebedf3;
+  border: 1px solid #eef0fa;
+  box-shadow: none;
+}
+
+.customerLedgerIcon .statCard:hover {
+  background: #ffffff;
+  box-shadow: 0 10px 24px rgba(79, 70, 229, 0.12);
+}
+
+.customerLedgerIcon .statTop {
+  margin-bottom: 12px;
+}
+
+.customerLedgerIcon .statIcon {
+  width: 42px;
+  height: 42px;
+  font-size: 1.05rem;
+}
+
+.customerLedgerIcon .statLabel {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.customerLedgerIcon .statValue {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  color: #141b5a;
+}
+
+/* Paid = green, Pending = red (value ki class se) */
+.customerLedgerIcon .statValue.success { color: #16a34a; }
+.customerLedgerIcon .statValue.danger  { color: #e11d48; }
+
+
+
+
+.ledgerTableDiv {
+  margin-top: 20px;
+  max-height: 340px;          /* is height ke baad data scroll hoga */
+  overflow: auto;
   background: #ffffff;
   border: 1px solid #eef0fa;
   border-radius: 14px;
   box-shadow: 0 6px 20px rgba(79, 70, 229, 0.06);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
-.statCard:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 14px 30px rgba(79, 70, 229, 0.14);
+.ledgerTableDiv table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
 }
 
-/* Icon + label row */
-.statTop {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 14px;
+/* Header: scroll me upar chipka rahega */
+.ledgerTableDiv th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding: 14px 20px;
+  text-align: left;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: #64748b;
+  background: #f4f6ff;        /* background zaroori hai */
+  box-shadow: 0 1px 0 #e2e6f5;
+  white-space: nowrap;
 }
 
-.statIcon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: 46px;
-  height: 46px;
-  font-size: 1.2rem;
-  border-radius: 12px;
+.ledgerTableDiv td {
+  padding: 14px 20px;
+  font-size: 0.92rem;
+  color: #334155;
+  border-bottom: 1px solid #eef0fa;
+  white-space: nowrap;
 }
 
-.statIcon.blue   { color: #3b5bfd; background: #e4e9ff; }
-.statIcon.green  { color: #16a34a; background: #dcfce7; }
-.statIcon.orange { color: #f97316; background: #ffe8d1; }
-.statIcon.purple { color: #7c3aed; background: #ede4ff; }
-
-.statLabel {
-  margin: 0;
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: #3b4570;
+.ledgerTableDiv tbody tr {
+  transition: background 0.2s;
 }
 
-/* Value */
-.statValue {
-  margin: 0 0 12px;
-  font-size: 1.7rem;
-  font-weight: 800;
+.ledgerTableDiv tbody tr:hover {
+  background: #f8f9ff;
+}
+
+.ledgerTableDiv tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Column styling: 2 = invoice, 3 = amount, 4 = due, 5 = status */
+.ledgerTableDiv td:nth-child(2) {
+  font-weight: 600;
+  color: #4f46e5;
+}
+
+.ledgerTableDiv td:nth-child(3) {
+  font-weight: 600;
   color: #141b5a;
 }
 
-.statValue.danger {
-  color: #ef0000;
-}
-
-/* Change row */
-.statChange {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin: 0;
-  font-size: 0.85rem;
-  color: #4b5a8a;
-}
-
-.statArrow {
+.ledgerTableDiv td:nth-child(4) {
   font-weight: 700;
-  color: #16a34a;
+  color: #e11d48;
 }
 
-.statArrow i {
-  font-size: 0.8rem;
+/* Thin scrollbar */
+.ledgerTableDiv::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
+
+.ledgerTableDiv::-webkit-scrollbar-thumb {
+  background: #c7cbff;
+  border-radius: 8px;
+}
+
+.ledgerTableDiv::-webkit-scrollbar-thumb:hover {
+  background: #4f46e5;
+}
+
+/* Status badges: <td><span className="badge paid">Paid</span></td> */
+.ledgerTableDiv .badge {
+  display: inline-block;
+  padding: 4px 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 999px;
+}
+
+.ledgerTableDiv .badge.paid    { color: #15803d; background: #e8f9ef; }
+.ledgerTableDiv .badge.partial { color: #b45309; background: #fff4e0; }
+.ledgerTableDiv .badge.unpaid  { color: #e11d48; background: #ffeef1; }
+
+@media (max-width: 900px) {
+  .ledgerTableDiv {
+    max-height: 300px;
+  }
+}
+
+
 
 /* ---------- Responsive ---------- */
 @media (max-width: 1100px) {
-  .statCards {
-    grid-template-columns: repeat(2, 1fr);
+  .customerLedgerIcon .statCards {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
-@media (max-width: 560px) {
-  .statCards {
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-
-  .statCard {
+@media (max-width: 700px) {
+  .customerLedgerIcon {
     padding: 16px;
   }
 
-  .statValue {
-    font-size: 1.5rem;
+  .customerLedgerIcon .statCards {
+    grid-template-columns: 1fr;
   }
 }
+
+
+
+
+
+
+
+

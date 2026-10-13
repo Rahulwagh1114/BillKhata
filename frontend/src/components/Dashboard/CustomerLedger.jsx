@@ -1,21 +1,21 @@
 import { useState } from "react";
 import "./CustomerLedger.css";
 function CustomerLedger(){
-    const stats = [
+    const statss = [
   {
-    label: "Total Sales",
+    label: "Total Purchased",
     value: "₹2,45,000",
     icon: "fa-solid fa-bag-shopping",
-    color: "blue",
-  },
-   {
-    label: "Total Sales",
-    value: "₹2,45,000",
-     icon: "fa-solid fa-bag-shopping",
     color: "green",
   },
    {
-    label: "Total Sales",
+    label: "Paid Amount",
+    value: "₹2,45,000",
+     icon: "fa-solid fa-bag-shopping",
+    color: "blue",
+  },
+   {
+    label: "Pending Amount",
     value: "₹2,45,000",
     icon: "fa-solid fa-bag-shopping",
     color: "orange",
@@ -49,7 +49,7 @@ function CustomerLedger(){
                </div>
                
                       <section className="statCards">
-                      {stats.map((stat) => (
+                      {statss.map((stat) => (
           <div className="statCard" key={stat.label}>
             <div className="statTop">
               <span className={`statIcon ${stat.color}`}>
@@ -64,10 +64,30 @@ function CustomerLedger(){
                 </div>
         ))}
         </section>
-                      
-               
            </div>
-           <div></div>
+
+           <div className="ledgerTableDiv">
+            <table>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Invoice-Ref</th>
+                  <th>Amount</th>
+                  <th>Due Amount</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tBody>
+                <tr>
+                  <td>Date</td>
+                  <td>invoice</td>
+                  <td>amount</td>
+                  <td>due</td>
+                  <td>status</td>
+                </tr>
+              </tBody>
+            </table>
+           </div>
         </div>
     )
 }
