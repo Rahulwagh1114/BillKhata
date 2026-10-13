@@ -6,6 +6,7 @@ import Invoice from './components/Dashboard/Invoice';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Customers from './components/Dashboard/Customers';
 import CustomerLedger from './components/Dashboard/CustomerLedger';
+import Products from './components/Dashboard/Products';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="invoices" element={<Invoice />} />
           <Route path="customers" element={<Customers/>}/>
           <Route path="customerLedger" element={<CustomerLedger/>}/>
+          <Route path="products" element={<Products/>}/>
           
           {/* <Route path="customers/:id/ledger" element={<CustomerLedger />} /> */}
         </Route>

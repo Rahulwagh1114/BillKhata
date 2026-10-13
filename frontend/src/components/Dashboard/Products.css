@@ -1,0 +1,461 @@
+.prPage {
+  flex: 1;
+  min-width: 0;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 28px 32px;
+  background-color: #ebedf3;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+.prTitle {
+  margin: 0 0 20px;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #141b5a;
+}
+
+/* Top bar: search left, button right */
+.prTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.prSearch {
+  position: relative;
+  flex: 1;
+  max-width: 360px;
+}
+
+.prSearchIcon {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  transform: translateY(-50%);
+  font-size: 0.9rem;
+  color: #94a3b8;
+  pointer-events: none;
+  transition: color 0.2s;
+}
+
+.prSearchInput {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 11px 16px 11px 40px;
+  font-family: inherit;
+  font-size: 0.92rem;
+  color: #1e293b;
+  background: #ffffff;
+  border: 1px solid #dfe3f3;
+  border-radius: 10px;
+  outline: none;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.05);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.prSearchInput::placeholder {
+  color: #94a3b8;
+}
+
+.prSearchInput:hover {
+  border-color: #c7cbff;
+}
+
+.prSearchInput:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.14);
+}
+
+.prSearch:focus-within .prSearchIcon {
+  color: #4f46e5;
+}
+
+.prAddBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-shrink: 0;
+  height: 40px;
+  padding: 0 24px;
+  font-family: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  white-space: nowrap;
+  color: #ffffff;
+  background: #535db5;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(83, 93, 181, 0.35);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+.prAddBtn:hover {
+  background: #4a54a8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(83, 93, 181, 0.5);
+}
+
+.prAddBtn:active {
+  transform: translateY(0);
+}
+
+/* Table: only the body scrolls, header stays */
+.prTableWrap {
+  max-height: calc(100vh - 230px);
+  overflow: auto;
+  background: #ffffff;
+  border: 1px solid #eef0fa;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.06);
+}
+
+.prTable {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+}
+
+.prTable th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding: 14px 18px;
+  text-align: left;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: #64748b;
+  background: #f4f6ff;
+  box-shadow: 0 1px 0 #e2e6f5;
+}
+
+.prTable td {
+  padding: 13px 18px;
+  font-size: 0.92rem;
+  white-space: nowrap;
+  color: #334155;
+  border-bottom: 1px solid #eef0fa;
+}
+
+.prTable tbody tr {
+  transition: background 0.2s;
+}
+
+.prTable tbody tr:hover {
+  background: #f8f9ff;
+}
+
+.prTable tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.prName {
+  font-weight: 600;
+  color: #141b5a;
+}
+
+.prRate {
+  font-weight: 700;
+  color: #141b5a;
+}
+
+.prNoRows {
+  padding: 32px !important;
+  text-align: center;
+  color: #64748b;
+}
+
+/* Stock badge */
+.prStock {
+  display: inline-block;
+  padding: 4px 12px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border-radius: 999px;
+}
+
+.prStock.ok {
+  color: #15803d;
+  background: #e8f9ef;
+}
+
+.prStock.low {
+  color: #e11d48;
+  background: #ffeef1;
+}
+
+/* Action icons */
+.prTable .prActionCol {
+  width: 110px;
+  text-align: center;
+}
+
+.prIconBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  margin: 0 3px;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+
+.prIconBtn:hover {
+  transform: translateY(-2px);
+}
+
+.prIconBtn.edit {
+  color: #4f46e5;
+  background: #eef0ff;
+}
+
+.prIconBtn.edit:hover {
+  color: #ffffff;
+  background: #4f46e5;
+}
+
+.prIconBtn.delete {
+  color: #e11d48;
+  background: #ffeef1;
+}
+
+.prIconBtn.delete:hover {
+  color: #ffffff;
+  background: #e11d48;
+}
+
+/* Thin scrollbar */
+.prTableWrap::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.prTableWrap::-webkit-scrollbar-thumb {
+  background: #c7cbff;
+  border-radius: 8px;
+}
+
+/* ---------- Popup form ---------- */
+.prOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(8, 12, 40, 0.55);
+  animation: prFade 0.2s ease-out;
+}
+
+.prModal {
+  position: relative;
+  width: 440px;
+  max-width: 100%;
+  max-height: 92vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.3);
+  animation: prPop 0.25s ease-out;
+}
+
+@keyframes prFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes prPop {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.93);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.prModal h3 {
+  margin: 0 0 18px;
+  padding-right: 36px;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #141b5a;
+}
+
+.prClose {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  font-size: 0.95rem;
+  color: #64748b;
+  background: #eef0fa;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+
+.prClose:hover {
+  color: #ffffff;
+  background: #ef4444;
+  transform: rotate(90deg);
+}
+
+.prForm {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.prField {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.prField.full,
+.prFormActions.full {
+  grid-column: 1 / -1;
+}
+
+.prField label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #3b4570;
+}
+
+.prField input,
+.prField select,
+.prField textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  font-family: inherit;
+  font-size: 0.92rem;
+  color: #1e293b;
+  background: #ffffff;
+  border: 1px solid #dfe3f3;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.prField input::placeholder,
+.prField textarea::placeholder {
+  color: #94a3b8;
+}
+
+.prField input:focus,
+.prField select:focus,
+.prField textarea:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.14);
+}
+
+.prField textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+/* hide number arrows */
+.prField input[type="number"]::-webkit-outer-spin-button,
+.prField input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.prField input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.prError {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 9px 12px;
+  font-size: 0.85rem;
+  color: #e11d48;
+  background: #ffeef1;
+  border-radius: 8px;
+}
+
+.prFormActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.prFormActions button {
+  padding: 10px 22px;
+  font-family: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.prCancel {
+  color: #475569;
+  background: #eef0fa;
+}
+
+.prCancel:hover {
+  background: #e2e6f5;
+}
+
+.prSave {
+  color: #ffffff;
+  background: #4f46e5;
+  box-shadow: 0 6px 16px rgba(79, 70, 229, 0.3);
+}
+
+.prSave:hover {
+  transform: translateY(-2px);
+  background: #4338ca;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  /* room for the sidebar hamburger */
+  .prPage {
+    padding: 76px 16px 24px;
+  }
+}
+
+@media (max-width: 560px) {
+  .prTop {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .prSearch {
+    max-width: 100%;
+  }
+
+  .prForm {
+    grid-template-columns: 1fr;
+  }
+}

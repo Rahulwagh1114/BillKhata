@@ -4,6 +4,7 @@ import "./Hero.css";
 function Hero() {
   return (
     <section className="heroPageDiv">
+      
       <div className="heroContentDiv">
 
         <div className="heroSlogenDiv">

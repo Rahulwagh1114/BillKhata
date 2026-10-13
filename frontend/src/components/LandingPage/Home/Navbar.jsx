@@ -2,14 +2,17 @@ import { useState } from "react";
 import Logo from "./Logo";
 import "./Navbar.css";
 import { NavLink } from "react-router-dom";
+import Autho from "../../Dashboard/Autho";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [showAutho,setShowAutho]=useState(false);
 
   const toggleMenu = () => setIsOpen((prev) => !prev);
   const closeMenu = () => setIsOpen(false);
 
   return (
+    <>
     <header className="navbar">
       <div className="titleDiv">
         <Logo />
@@ -26,10 +29,11 @@ function Navbar() {
         </div>
 
         <div className="authDiv">
-          <a href="#" className="loginBtn" onClick={closeMenu}>Login</a>
+         <a href="#" className="loginBtn" onClick={(e) => { e.preventDefault(); setShowAutho(true); }}>
+        Login
+       </a>
         </div>
       </div>
-
       <button
         className="hamburgerBtn"
         onClick={toggleMenu}
@@ -39,6 +43,8 @@ function Navbar() {
         <i className={isOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars"}></i>
       </button>
     </header>
+    {showAutho && <Autho onClose={() => setShowAutho(false)} />}
+      </>
   );
 }
 

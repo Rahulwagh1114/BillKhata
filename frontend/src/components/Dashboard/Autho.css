@@ -1,0 +1,147 @@
+.AuthoDiv {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 1400; /* above the fixed navbar */
+  width: 380px;
+  max-width: calc(100vw - 32px);
+  max-height: 90vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: 28px 26px;
+  background: #ffffff;
+  border-radius: 16px;
+  /* the huge spread shadow works as the dark backdrop */
+  box-shadow: 0 0 0 100vmax rgba(8, 12, 40, 0.55),
+    0 24px 60px rgba(15, 23, 42, 0.3);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  transform: translate(-50%, -50%);
+  animation: authoPopIn 0.25s ease-out;
+}
+
+@keyframes authoPopIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -46%) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.AuthoDiv h2 {
+  margin: 0 0 20px;
+  font-size: 1.35rem;
+  font-weight: 800;
+  text-align: center;
+  color: #141b5a;
+}
+
+.AuthoDiv form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.AuthoDiv label {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #3b4570;
+}
+
+.AuthoDiv input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 11px 12px;
+  font-family: inherit;
+  font-size: 0.92rem;
+  color: #1e293b;
+  background: #ffffff;
+  border: 1px solid #dfe3f3;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.AuthoDiv input::placeholder {
+  color: #94a3b8;
+}
+
+.AuthoDiv input:hover {
+  border-color: #c7cbff;
+}
+
+.AuthoDiv input:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.14);
+}
+
+.AuthoDiv button[type="submit"] {
+  margin-top: 18px;
+  padding: 12px 20px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(135deg, #535db5, #6c77e0);
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 6px 16px rgba(83, 93, 181, 0.35);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.AuthoDiv button[type="submit"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(83, 93, 181, 0.45);
+}
+
+.AuthoDiv button[type="submit"]:active {
+  transform: translateY(0);
+}
+
+/* "Don't have an account?" line */
+.AuthoDiv form p {
+  margin: 16px 0 0;
+  font-size: 0.88rem;
+  text-align: center;
+  color: #64748b;
+}
+
+.AuthoDiv form p span {
+  font-weight: 700;
+  color: #4f46e5;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.AuthoDiv form p span:hover {
+  color: #3730a3;
+  text-decoration: underline;
+}
+
+.AuthoClose {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  font-size: 0.95rem;
+  color: #64748b;
+  background: #eef0fa;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+
+.AuthoClose:hover {
+  color: #ffffff;
+  background: #ef4444;
+  transform: rotate(90deg);
+}
