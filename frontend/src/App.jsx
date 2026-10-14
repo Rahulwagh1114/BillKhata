@@ -7,10 +7,17 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Customers from './components/Dashboard/Customers';
 import CustomerLedger from './components/Dashboard/CustomerLedger';
 import Products from './components/Dashboard/Products';
+import { MyContext } from './MyContext';
+import { useState } from 'react';
 
 function App() {
+  const [isLogin, setIsLogin] = useState(!!localStorage.getItem("accessToken"));
+  const providerValues={
+    isLogin,setIsLogin
+  }
   return (
     <BrowserRouter>
+     <MyContext.Provider value={providerValues}>
       <Routes>
         <Route path="/" element={<Home />} />
 
@@ -24,6 +31,7 @@ function App() {
           {/* <Route path="customers/:id/ledger" element={<CustomerLedger />} /> */}
         </Route>
       </Routes>
+       </MyContext.Provider>
     </BrowserRouter>
   )
 }

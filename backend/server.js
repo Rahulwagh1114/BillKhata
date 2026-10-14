@@ -6,8 +6,14 @@ import mongoose from "mongoose";
 import "dotenv/config";
 import cors from "cors";
 const app=express();
+import authRoutes from "./routes/businessLogin.js";
 
-app.use(cors())
+app.use(cors({
+  origin: "http://localhost:5173",
+  credentials: true,
+}));
+
+app.use(express.json());
 
 async function mongoDb (){
     try{
@@ -18,6 +24,8 @@ async function mongoDb (){
     }
 }
 await mongoDb();
+
+app.use("/api/billKhata",authRoutes);
 
 app.listen(8080,()=>{
     console.log("server is listing on port",8080)

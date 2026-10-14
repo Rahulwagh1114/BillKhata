@@ -1,6 +1,15 @@
 import { useState,useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Autho.css";
+import { useContext } from "react";
+import { MyContext } from "../../MyContext";
 function Autho({onClose}){
+
+const {setIsLogin}=useContext(MyContext)
+  const navigate = useNavigate();
+
+  const API_URL = import.meta.env.VITE_API_URL;
+
     const [inputData,setInputData]=useState({
         username:"",
         businessName:"",
@@ -28,7 +37,7 @@ function Autho({onClose}){
 
   try {
     const response = await fetch(
-      `${import.meta.env.VITE_API_URL}/${endpoint}`,
+      `${API_URL}/${endpoint}`,
       {
         method: "POST",
         headers: {
@@ -46,10 +55,17 @@ function Autho({onClose}){
       return;
     }
 
+    if (!isAlredyAcc) {
+  alert("Registered successfully! Now, please log in.");
+  setIsAlredyAcc(true);
+  return;
+}
+
     // backend sends the access token
     localStorage.setItem("accessToken", data.accessToken);
-    localStorage.setItem("user", JSON.stringify(data.user));
-
+    localStorage.setItem("businessLogin", JSON.stringify(data.businessLogin));
+    
+   setIsLogin(true);
     onClose();
 navigate("/dashboard");
 
@@ -68,7 +84,7 @@ navigate("/dashboard");
     return () => document.removeEventListener("keydown", handleKey);
   }, [onClose]);
     
-    return(
+    return(          
         <>
     
         <div className="AuthoDiv">
@@ -91,7 +107,7 @@ navigate("/dashboard");
             {!isAlredyAcc && <input type="text" name="mobile" id="mobile" placeholder="+91 9730******" value={inputData.mobile} onChange={handleInput} />}
 
               <label htmlFor="password">Password</label>
-             <input type="text" name="password" id="password" placeholder="******" value={inputData.password} onChange={handleInput} />
+             <input type="password" name="password" id="password" placeholder="******" value={inputData.password} onChange={handleInput} />
                
                <button type="submit">{isAlredyAcc?"Login":"Register"}</button>
 

@@ -264,7 +264,7 @@
   display: inline-flex;  
   align-items: center;
   justify-content: center;
-   vertical-align: middle;     /* text ke saath beech me align */
+  vertical-align: middle;     /* text ke saath beech me align */
   margin-right: 12px;         /* avatar aur name ke beech gap */
   width: 34px;
   height: 34px;
