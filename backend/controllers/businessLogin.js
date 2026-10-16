@@ -245,15 +245,7 @@ export const refreshToken=async(req,res)=>{
         await session.save();
 
         // Create new refresh token
-        const newRefreshToken = jwt.sign(
-            {
-                userId: decoded.userId
-            },
-            process.env.JWT_SECRET,
-            {
-                expiresIn: "7d"
-            }
-        );
+       const newRefreshToken = jwt.sign({ businessLoginId: decoded.businessLoginId }, process.env.JWT_SECRET, { expiresIn: "7d" });
 
         // Hash new refresh token
         const newRefreshTokenHash = crypto
@@ -263,22 +255,13 @@ export const refreshToken=async(req,res)=>{
 
         // Create new session
         await sessionModel.create({
-            user: decoded.userId,
-            refreshTokenHash: newRefreshTokenHash,
-            ip: req.ip,
-            userAgent: req.headers["user-agent"]
-        });
-
+    businessLogin: decoded.businessLoginId,   // "user" nahi
+    refreshTokenHash: newRefreshTokenHash,
+    ip: req.ip,
+    userAgent: req.headers["user-agent"]
+});
         // New access token
-        const accessToken = jwt.sign(
-            {
-                userId: decoded.userId
-            },
-            process.env.JWT_SECRET,
-            {
-                expiresIn: "15m"
-            }
-        );
+       const accessToken = jwt.sign({ businessLoginId: decoded.businessLoginId }, process.env.JWT_SECRET, { expiresIn: "15m" });
 
         // New refresh cookie
         res.cookie("refreshToken", newRefreshToken, {
