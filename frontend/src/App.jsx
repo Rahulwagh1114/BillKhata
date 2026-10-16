@@ -9,6 +9,7 @@ import CustomerLedger from './components/Dashboard/CustomerLedger';
 import Products from './components/Dashboard/Products';
 import { MyContext } from './MyContext';
 import { useState } from 'react';
+import ProtectedRoutes from './ProtectedRoutes';
 
 function App() {
   const [isLogin, setIsLogin] = useState(!!localStorage.getItem("accessToken"));
@@ -20,13 +21,15 @@ function App() {
      <MyContext.Provider value={providerValues}>
       <Routes>
         <Route path="/" element={<Home />} />
-
+        
+        <Route element={<ProtectedRoutes/>}>
         <Route path="/dashboard" element={<Dashboard />}>
           <Route index element={<Hero />} />
           <Route path="invoices" element={<Invoice />} />
           <Route path="customers" element={<Customers/>}/>
           <Route path="customerLedger" element={<CustomerLedger/>}/>
           <Route path="products" element={<Products/>}/>
+          </Route>
           
           {/* <Route path="customers/:id/ledger" element={<CustomerLedger />} /> */}
         </Route>

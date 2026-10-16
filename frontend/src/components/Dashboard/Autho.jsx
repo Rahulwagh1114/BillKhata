@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./Autho.css";
 import { useContext } from "react";
 import { MyContext } from "../../MyContext";
+import axios from "axios";
 function Autho({onClose}){
 
 const {setIsLogin}=useContext(MyContext)
@@ -32,46 +33,36 @@ const {setIsLogin}=useContext(MyContext)
 
   const endpoint = isAlredyAcc ? "login" : "register";
   const body = isAlredyAcc
-    ? { email, password }
-    : { username, businessName, email, mobile, password };
+    ? { email: email.trim().toLowerCase(), password }
+    : { username, businessName, email: email.trim().toLowerCase(), mobile, password };
 
   try {
-    const response = await fetch(
-      `${API_URL}/${endpoint}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify(body),
-      }
-    );
+    const { data } = await axios.post(`${API_URL}/${endpoint}`, body, {
+      withCredentials: true,
+    });
 
-    const data = await response.json();
-
-    if (!response.ok) {
-      alert(data.error || "Something went wrong");
+    if (!isAlredyAcc) {
+      alert("Registered successfully! Now, please log in.");
+      setIsAlredyAcc(true);
       return;
     }
 
-    if (!isAlredyAcc) {
-  alert("Registered successfully! Now, please log in.");
-  setIsAlredyAcc(true);
-  return;
-}
-
-    // backend sends the access token
+    // backend access token bhejta hai, refresh token cookie me jata hai
     localStorage.setItem("accessToken", data.accessToken);
     localStorage.setItem("businessLogin", JSON.stringify(data.businessLogin));
-    
-   setIsLogin(true);
-    onClose();
-navigate("/dashboard");
 
+    setIsLogin(true);
+    onClose();
+    navigate("/dashboard");
   } catch (err) {
-    console.error("Request failed:", err);
-    alert("Could not connect to the server.");
+    if (err.response) {
+      // backend ne error bheja (400, 401, 409 etc.)
+      alert(err.response.data.error || "Something went wrong");
+    } else {
+      // server tak request pahunchi hi nahi
+      console.error("Request failed:", err);
+      alert("Could not connect to the server.");
+    }
   }
 };
 
