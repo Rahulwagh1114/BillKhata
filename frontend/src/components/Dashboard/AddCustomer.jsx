@@ -1,23 +1,34 @@
 import { useState, useEffect } from "react";
 import "./AddCustomer.css";
+import api from "../../api";
 
-function AddCustomer({ onClose }) {
+function AddCustomer({ onClose, setAllCustomer }) {
   const [input, setInput] = useState({
     name: "",
     mobile: "",
     address: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const handleInput = (e) => {
     const { name, value } = e.target;
     setInput((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(input);
-    // TODO: send `input` to the backend API here
-    onClose();
+    if (loading) return;
+    setLoading(true);
+
+    try {
+      const response = await api.post("/customer/addCustomer", input);
+      setAllCustomer((prev) => [...prev, response.data.customer]);
+      onClose(); // sirf success par form band
+    } catch (error) {
+      alert(error.response?.data?.message || "Could not add customer");
+    } finally {
+      setLoading(false);
+    }
   };
 
   // Close on Escape key
@@ -52,16 +63,19 @@ function AddCustomer({ onClose }) {
             value={input.name}
             placeholder="Enter Customer Name"
             onChange={handleInput}
+            required
           />
 
           <label htmlFor="mobile">Mobile No.(WhatsApp)</label>
           <input
-            type="number"
+            type="tel"
+            inputMode="numeric"
             id="mobile"
             name="mobile"
             value={input.mobile}
             placeholder="Enter mobile no."
             onChange={handleInput}
+            required
           />
 
           <label htmlFor="address">Address(Optional)</label>
@@ -73,7 +87,9 @@ function AddCustomer({ onClose }) {
             onChange={handleInput}
           ></textarea>
 
-          <button type="submit">Add</button>
+          <button type="submit" disabled={loading}>
+            {loading ? "Adding..." : "Add"}
+          </button>
         </form>
       </div>
     </>

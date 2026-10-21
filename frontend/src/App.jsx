@@ -27,7 +27,7 @@ function App() {
           <Route index element={<Hero />} />
           <Route path="invoices" element={<Invoice />} />
           <Route path="customers" element={<Customers/>}/>
-          <Route path="customerLedger" element={<CustomerLedger/>}/>
+          <Route path="customers/:id/ledger" element={<CustomerLedger/>}/>
           <Route path="products" element={<Products/>}/>
           </Route>
           
