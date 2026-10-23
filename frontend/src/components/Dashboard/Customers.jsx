@@ -72,9 +72,12 @@ function Customers() {
               </tr>
             ) : (
               allCustomer.map((customer) => (
-                <tr key={customer._id}
-                 onClick={() => navigate(`/dashboard/customers/${customer._id}/ledger`)}
-  style={{ cursor: "pointer" }}
+                <tr
+                  key={customer._id}
+                  onClick={() =>
+                    navigate(`/dashboard/customers/${customer._id}/ledger`)
+                  }
+                  style={{ cursor: "pointer" }}
                 >
                   <td>
                     <span className="userAvatar">
@@ -89,12 +92,12 @@ function Customers() {
                   <td>
                     <button
                       title="Create Invoice"
-                      onClick={(e) =>{
-                          e.stopPropagation()
+                      onClick={(e) => {
+                        e.stopPropagation();
                         navigate("/dashboard/invoices", {
                           state: { customerId: customer._id },
-                        })}
-                      }
+                        });
+                      }}
                     >
                       <i className="fa-solid fa-file-circle-plus"></i>
                     </button>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import api from "../../api";
 import "./Invoice.css";
 
 const productOptions = [
@@ -42,12 +43,23 @@ function Invoice() {
   const [notes, setNotes] = useState("");
   const [dueDate, setDueDate] = useState("");
   const [amountPaid, setAmountPaid] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const today = getToday();
 
   const handleCustomerChange = (e) => {
     const { id, value } = e.target;
     setCustomer((prev) => ({ ...prev, [id]: value }));
+  };
+
+  const resetForm = () => {
+    setCustomer({ name: "", mobile: "", address: "" });
+    setRows([createRow()]);
+    setDiscount("");
+    setPaymentStatus("unpaid");
+    setNotes("");
+    setDueDate("");
+    setAmountPaid("");
   };
 
   // Amount is auto-calculated when qty or rate changes,
@@ -133,29 +145,48 @@ function Invoice() {
     return true;
   };
 
-  const handleGenerate = () => {
-    if (!validate()) return;
-
-    const invoice = {
-      customer,
-      items: rows.filter((row) => row.product),
-      subtotal,
+  // Backend me invoice save karta hai
+  const saveInvoice = async () => {
+    const payload = {
+      name: customer.name,
+      mobile: customer.mobile,
+      address: customer.address,
+      items: rows
+        .filter((row) => row.product && Number(row.amount) > 0)
+        .map((row) => ({
+          product: row.product,
+          qty: Number(row.qty),
+          rate: Number(row.rate || 0),
+          amount: Number(row.amount),
+        })),
       discount: discountValue,
-      total,
       paymentStatus,
+      amountPaid: paidValue,
       dueDate: needsDueDate ? dueDate : null,
-      amountPaid: paymentStatus === "paid" ? total : paidValue,
-      balance: paymentStatus === "paid" ? 0 : balance,
       notes,
     };
 
-    // TODO: send `invoice` to the backend API here
-    console.log("Invoice data:", invoice);
-    alert("Invoice generated successfully!");
+    const { data } = await api.post("/invoice/create", payload);
+    return data;
   };
 
-  const handleWhatsApp = () => {
-    if (!validate()) return;
+  const handleGenerate = async () => {
+    if (loading || !validate()) return;
+    setLoading(true);
+
+    try {
+      await saveInvoice();
+      alert("Invoice generated successfully!");
+      resetForm();
+    } catch (error) {
+      alert(error.response?.data?.message || "Could not create invoice");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleWhatsApp = async () => {
+    if (loading || !validate()) return;
 
     const digits = customer.mobile.replace(/\D/g, "");
     if (digits.length < 10) {
@@ -194,10 +225,22 @@ function Invoice() {
       `${paymentLines}\n` +
       `Thank you!`;
 
-    window.open(
-      `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
-      "_blank"
-    );
+    // click ke waqt hi tab kholo, warna async ke baad browser popup block kar deta hai
+    const win = window.open("", "_blank");
+    setLoading(true);
+
+    try {
+      await saveInvoice();
+      if (win) {
+        win.location.href = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+      }
+      resetForm();
+    } catch (error) {
+      if (win) win.close();
+      alert(error.response?.data?.message || "Could not create invoice");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -424,10 +467,20 @@ function Invoice() {
 
       {/* Actions */}
       <div className="invoiceActions">
-        <button type="button" className="btnGenerate" onClick={handleGenerate}>
-          Generate Invoice
+        <button
+          type="button"
+          className="btnGenerate"
+          onClick={handleGenerate}
+          disabled={loading}
+        >
+          {loading ? "Please wait..." : "Generate Invoice"}
         </button>
-        <button type="button" className="btnWhatsapp" onClick={handleWhatsApp}>
+        <button
+          type="button"
+          className="btnWhatsapp"
+          onClick={handleWhatsApp}
+          disabled={loading}
+        >
           <i className="fa-brands fa-whatsapp"></i> Send WhatsApp
         </button>
       </div>

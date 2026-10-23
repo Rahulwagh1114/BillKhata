@@ -9,17 +9,23 @@ function CustomerLedger() {
   const [error, setError] = useState("");
   const [search, setSearch] = useState("");
 
-  useEffect(() => {
-    const getCustomer = async () => {
-      try {
-        const response = await api.get(`/customer/${id}`);
-        setCustomer(response.data.customer);
-      } catch (err) {
-        setError(err.response?.data?.message || "Could not load customer");
-      }
-    };
-    getCustomer();
-  }, [id]);
+ const [invoices, setInvoices] = useState([]);
+
+useEffect(() => {
+  const loadData = async () => {
+    try {
+      const [customerRes, invoiceRes] = await Promise.all([
+        api.get(`/customer/${id}`),
+        api.get(`/customer/${id}/invoices`),
+      ]);
+      setCustomer(customerRes.data.customer);
+      setInvoices(invoiceRes.data.invoices);
+    } catch (err) {
+      setError(err.response?.data?.message || "Could not load customer");
+    }
+  };
+  loadData();
+}, [id]);
 
   // saare hooks ke baad hi early return
   if (error) return <p>{error}</p>;
@@ -103,11 +109,21 @@ function CustomerLedger() {
               <th>Status</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td colSpan="5">No transactions yet</td>
-            </tr>
-          </tbody>
+         <tbody>
+  {invoices.length === 0 ? (
+    <tr><td colSpan="5">No transactions yet</td></tr>
+  ) : (
+    invoices.map((inv) => (
+      <tr key={inv._id}>
+        <td>{new Date(inv.createdAt).toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric" })}</td>
+        <td>INV-{inv._id.slice(-6).toUpperCase()}</td>
+        <td>₹{inv.totalAmount.toLocaleString("en-IN")}</td>
+        <td>₹{inv.dueAmount.toLocaleString("en-IN")}</td>
+      <td>{inv.paymentStatus.charAt(0).toUpperCase() + inv.paymentStatus.slice(1)}</td>
+      </tr>
+    ))
+  )}
+</tbody>
         </table>
       </div>
     </div>
