@@ -10,6 +10,7 @@ const app=express();
 import authRoutes from "./routes/businessLogin.js";
 import customerRoutes from "./routes/customer.js";
 import dashboardRoutes from "./routes/dashboard.js";
+import invoiceRoutes from "./routes/invoiceRoute.js";
 
 app.use(cors({
   origin: "http://localhost:5173",
@@ -32,6 +33,7 @@ await mongoDb();
 app.use("/api/billKhata",authRoutes);
 app.use("/api/billkhata",dashboardRoutes);
 app.use("/api/billkhata",customerRoutes);
+app.use("/api/billkhata",invoiceRoutes);
 
 
 app.listen(8080,()=>{

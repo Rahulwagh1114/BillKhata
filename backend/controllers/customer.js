@@ -117,7 +117,7 @@ export const getOneCustomer = async (req, res) => {
   }
 };
 
-// Edit customer (sirf name, mobile, address)
+// Edit customer (sirf  mobile, address)
 export const editCustomer = async (req, res) => {
   try {
     const { id } = req.params;
