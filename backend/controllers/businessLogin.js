@@ -56,7 +56,7 @@ export const registerBusiness=async(req,res)=>{
         },
         process.env.JWT_SECRET,
         {
-            expiresIn:"7d"
+            expiresIn:"12h"
         }
       )
 
@@ -79,7 +79,7 @@ export const registerBusiness=async(req,res)=>{
         httpOnly:true,
         secure:false,         //localhost
         sameSite: "lax",
-         maxAge: 7 * 24 * 60 * 60 * 1000
+         maxAge: 12 * 60 * 60 * 1000
       });
 
        return res.status(201).json({
@@ -154,7 +154,7 @@ try{
             },
             process.env.JWT_SECRET,
             {
-                expiresIn: "7d"
+                expiresIn: "12h"
             }
         );
         
@@ -178,7 +178,7 @@ try{
             httpOnly: true,
             secure: false, // localhost
             sameSite: "lax",
-            maxAge: 7 * 24 * 60 * 60 * 1000
+            maxAge: 12 * 60 * 60 * 1000
         });
 
         return res.status(200).json({
@@ -245,7 +245,7 @@ export const refreshToken=async(req,res)=>{
         await session.save();
 
         // Create new refresh token
-       const newRefreshToken = jwt.sign({ businessLoginId: decoded.businessLoginId }, process.env.JWT_SECRET, { expiresIn: "7d" });
+       const newRefreshToken = jwt.sign({ businessLoginId: decoded.businessLoginId }, process.env.JWT_SECRET, { expiresIn: "12h" });
 
         // Hash new refresh token
         const newRefreshTokenHash = crypto
@@ -268,7 +268,7 @@ export const refreshToken=async(req,res)=>{
             httpOnly: true,
             secure: false,
             sameSite: "lax",
-            maxAge: 7 * 24 * 60 * 60 * 1000
+            maxAge: 12 * 60 * 60 * 1000
         });
 
         return res.status(200).json({
