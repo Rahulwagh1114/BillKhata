@@ -1,5 +1,6 @@
 import heroImage from "../../../assets/heroImage.png";
 import "./Hero.css";
+import HeroIllustration from "./HeroIllustration";
 
 function Hero() {
   return (
@@ -30,7 +31,8 @@ function Hero() {
       </div>
 
       <div className="heroImageDiv">
-        <img src={heroImage} alt="SmartBill dashboard preview" />
+        {/* <img src={heroImage} alt="SmartBill dashboard preview" /> */}
+        <HeroIllustration/>
       </div>
     </section>
   );

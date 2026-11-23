@@ -1,0 +1,623 @@
+.biHero {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  container-type: inline-size; /* every size uses cqw, so it scales with the container */
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: #1e1b4b;
+  user-select: none;
+}
+
+.biHero * {
+  box-sizing: border-box;
+}
+
+.biHero h4,
+.biHero p {
+  margin: 0;
+}
+
+/* ---------- Background ---------- */
+.biPanel {
+  position: absolute;
+  inset: 0.8cqw 1cqw 1cqw 3.4cqw;
+  border-radius: 3cqw;
+  background: linear-gradient(145deg, #f3f2ff 0%, #ffffff 70%);
+  box-shadow: 0 2cqw 5cqw rgba(79, 70, 229, 0.08);
+}
+
+.biGlow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(6cqw);
+  pointer-events: none;
+}
+
+.biGlowOne {
+  top: 0;
+  right: 10cqw;
+  width: 28cqw;
+  height: 24cqw;
+  background: radial-gradient(circle, rgba(167, 139, 250, 0.4), transparent 70%);
+  animation: biDrift 14s ease-in-out infinite;
+}
+
+.biGlowTwo {
+  bottom: 0;
+  left: 24cqw;
+  width: 30cqw;
+  height: 18cqw;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.25), transparent 70%);
+  animation: biDrift 18s ease-in-out infinite reverse;
+}
+
+@keyframes biDrift {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(2cqw, 1.5cqw); }
+}
+
+@keyframes biFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-0.8cqw); }
+}
+
+/* ---------- Dashboard ---------- */
+.biDash {
+  position: absolute;
+  top: 1.7cqw;
+  left: 4.3cqw;
+  width: 56cqw;
+  height: 45.6cqw;
+  display: flex;
+  overflow: hidden;
+  border-radius: 1.4cqw;
+  background: rgba(247, 248, 255, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2.4cqw 5cqw rgba(79, 70, 229, 0.18),
+    0 0.3cqw 1cqw rgba(79, 70, 229, 0.08);
+  animation: biFloat 9s ease-in-out infinite;
+}
+
+/* Sidebar */
+.biSide {
+  width: 13.8cqw;
+  padding: 1.6cqw 1.1cqw;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35cqw;
+  background: linear-gradient(180deg, #141b5a, #0b1040);
+}
+
+.biBrand {
+  display: flex;
+  align-items: center;
+  gap: 0.7cqw;
+  margin-bottom: 1.4cqw;
+  color: #fff;
+}
+
+.biBrand strong {
+  font-size: 1.25cqw;
+  font-weight: 700;
+}
+
+.biBrandIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.4cqw;
+  height: 2.4cqw;
+  font-size: 1.1cqw;
+  border-radius: 0.7cqw;
+  background: linear-gradient(135deg, #6d7bff, #4f46e5);
+}
+
+.biNav {
+  display: flex;
+  align-items: center;
+  gap: 0.9cqw;
+  padding: 0.95cqw 0.6cqw;
+  font-size: 0.95cqw;
+  font-weight: 500;
+  color: #e3e6ff;
+}
+
+.biNav i {
+  width: 1.3cqw;
+  font-size: 1.05cqw;
+  text-align: center;
+}
+
+/* Main */
+.biMain {
+  flex: 1;
+  min-width: 0;
+  padding: 0.9cqw 1cqw 1cqw;
+  display: flex;
+  flex-direction: column;
+}
+
+.biTopBar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1.8cqw;
+  padding: 0 1.4cqw 0.7cqw 0;
+  font-size: 1cqw;
+  color: #1e293b;
+}
+
+.biTopBar .fa-chevron-down {
+  font-size: 0.7cqw;
+}
+
+.biForm {
+  flex: 1;
+  min-height: 0;
+  padding: 1.2cqw 1.4cqw;
+  background: #fff;
+  border: 1px solid #eef0fa;
+  border-radius: 1cqw;
+  box-shadow: 0 0.3cqw 1cqw rgba(79, 70, 229, 0.06);
+}
+
+.biForm h4 {
+  padding-bottom: 0.8cqw;
+  margin-bottom: 0.9cqw;
+  font-size: 1.8cqw;
+  font-weight: 800;
+  color: #141b5a;
+  border-bottom: 1px solid #f1f2fb;
+}
+
+/* Customer */
+.biCustomer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 1cqw;
+}
+
+.biCustomer small {
+  display: block;
+  margin-bottom: 0.3cqw;
+  font-size: 0.9cqw;
+  font-weight: 600;
+  color: #334155;
+}
+
+.biSelect {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 21.5cqw;
+  padding: 0.55cqw 0.9cqw;
+  font-size: 0.95cqw;
+  color: #1e293b;
+  background: #fff;
+  border: 1px solid #dfe3f3;
+  border-radius: 0.5cqw;
+}
+
+.biSelect i {
+  font-size: 0.6cqw;
+  color: #64748b;
+}
+
+.biAddCustomer,
+.biAddProduct {
+  font-size: 0.95cqw;
+  font-weight: 500;
+  color: #3b5bfd;
+}
+
+.biAddCustomer {
+  margin: 0 1.6cqw 0.7cqw 0;
+}
+
+.biAddProduct {
+  display: block;
+  margin: 0.8cqw 0 1cqw;
+  font-size: 0.9cqw;
+}
+
+/* Product table */
+.biTable {
+  border: 1px solid #eef0fa;
+  border-radius: 0.7cqw;
+  overflow: hidden;
+}
+
+.biTr {
+  display: grid;
+  grid-template-columns: 1.5fr 1.5fr 1fr 1fr 2.2cqw;
+  align-items: center;
+  padding: 0 1cqw;
+  font-size: 0.9cqw;
+  color: #334155;
+}
+
+.biTh {
+  height: 2.6cqw;
+  font-size: 0.85cqw;
+  font-weight: 600;
+  color: #475569;
+  background: #f4f6ff;
+}
+
+.biRow {
+  height: 3.6cqw;
+  border-top: 1px solid #f1f2fb;
+  animation: biRowIn 12s ease-in-out infinite backwards;
+}
+
+.end {
+  text-align: right;
+}
+
+.biQty {
+  display: block;
+  width: 7cqw;
+  padding: 0.5cqw 0.9cqw;
+  font-weight: 500;
+  border: 1px solid #dfe3f3;
+  border-radius: 0.5cqw;
+}
+
+.biX {
+  text-align: right;
+  font-size: 0.75cqw;
+  color: #64748b;
+}
+
+@keyframes biRowIn {
+  0%   { opacity: 0; transform: translateY(0.6cqw); }
+  6%, 90% { opacity: 1; transform: translateY(0); }
+  97%, 100% { opacity: 0; transform: translateY(0); }
+}
+
+/* Payment status + totals */
+.biBottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1cqw;
+}
+
+.biStatusBox,
+.biTotals {
+  padding: 0.9cqw 1.1cqw;
+  border: 1px solid #eef0fa;
+  border-radius: 0.7cqw;
+}
+
+.biStatusBox strong {
+  font-size: 1cqw;
+  color: #141b5a;
+}
+
+.biRadios {
+  display: flex;
+  gap: 1.3cqw;
+  margin-top: 1.1cqw;
+  font-size: 0.9cqw;
+  color: #334155;
+}
+
+.biRadios span {
+  display: flex;
+  align-items: center;
+  gap: 0.5cqw;
+}
+
+.biRadios i {
+  width: 1.2cqw;
+  height: 1.2cqw;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 50%;
+}
+
+.biRadios .on i {
+  border: 0.38cqw solid #3b5bfd;
+  background: #fff;
+}
+
+.biTotals p {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.25cqw 0;
+  font-size: 0.9cqw;
+  color: #334155;
+}
+
+.biTotals .biGrand {
+  margin-top: 0.4cqw;
+  padding-top: 0.6cqw;
+  border-top: 1px solid #eef0fa;
+  font-size: 1.15cqw;
+  font-weight: 800;
+  color: #141b5a;
+}
+
+/* Buttons */
+.biButtons {
+  display: flex;
+  gap: 1cqw;
+  margin-top: 1cqw;
+}
+
+.biBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6cqw;
+  width: 15cqw;
+  padding: 0.95cqw 0;
+  font-size: 0.9cqw;
+  font-weight: 600;
+  color: #fff;
+  border-radius: 0.6cqw;
+}
+
+.biBtn.primary {
+  background: #2f5bff;
+  box-shadow: 0 0.5cqw 1.2cqw rgba(47, 91, 255, 0.3);
+}
+
+.biBtn.wa {
+  background: #16a34a;
+  box-shadow: 0 0.5cqw 1.2cqw rgba(22, 163, 74, 0.3);
+  animation: biBtnPulse 12s ease-in-out infinite;
+}
+
+@keyframes biBtnPulse {
+  0%, 62%, 78%, 100% { transform: scale(1); }
+  70% { transform: scale(1.035); }
+}
+
+/* ---------- Invoice preview ---------- */
+.biPreview {
+  position: absolute;
+  top: 1.7cqw;
+  left: 61.8cqw;
+  width: 30.6cqw;
+  height: 44.8cqw;
+  padding: 2.2cqw 1.9cqw;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 1.4cqw;
+  box-shadow: 0 2.2cqw 4.5cqw rgba(79, 70, 229, 0.16),
+    0 0.3cqw 1cqw rgba(79, 70, 229, 0.06);
+  animation: biFloat 10s ease-in-out -4s infinite;
+}
+
+.biPrevHead {
+  display: flex;
+  align-items: center;
+  gap: 1cqw;
+  padding-bottom: 1cqw;
+  border-bottom: 1px solid #eef0fa;
+}
+
+.biAvatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5cqw;
+  height: 3.5cqw;
+  font-size: 1.4cqw;
+  font-weight: 700;
+  color: #fff;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6d7bff, #4f46e5);
+}
+
+.biPrevHead strong {
+  display: block;
+  font-size: 1.25cqw;
+  color: #141b5a;
+}
+
+.biPrevHead small {
+  font-size: 0.85cqw;
+  color: #64748b;
+}
+
+.biMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1cqw 0;
+  font-size: 0.85cqw;
+  font-weight: 600;
+  color: #334155;
+}
+
+.biMeta small {
+  font-size: 0.75cqw;
+  font-weight: 400;
+  color: #64748b;
+}
+
+.biBill {
+  margin-bottom: 1cqw;
+  font-size: 0.9cqw;
+  line-height: 1.5;
+  color: #334155;
+}
+
+.biBill small {
+  display: block;
+  font-size: 0.85cqw;
+  font-weight: 700;
+  color: #141b5a;
+}
+
+.biBill strong {
+  display: block;
+  color: #141b5a;
+}
+
+.biPrevTable {
+  border: 1px solid #eef0fa;
+  border-radius: 0.6cqw;
+  overflow: hidden;
+}
+
+.biPrevRow {
+  display: grid;
+  grid-template-columns: 1.6fr 0.7fr 1fr 1fr;
+  align-items: center;
+  padding: 0 0.9cqw;
+  height: 2.5cqw;
+  font-size: 0.82cqw;
+  color: #334155;
+}
+
+.biPrevRow.head {
+  height: 2.2cqw;
+  font-weight: 600;
+  color: #475569;
+  background: #f4f6ff;
+  animation: none;
+}
+
+.biPrevRow.biRow {
+  height: 2.5cqw;
+}
+
+.biPrevTotals {
+  width: 17cqw;
+  margin: 0.8cqw 0 0 auto;
+}
+
+.biPrevTotals p {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.25cqw 0;
+  font-size: 0.82cqw;
+  color: #334155;
+}
+
+.biPrevTotals .biPrevGrand {
+  margin-top: 0.4cqw;
+  padding-top: 0.6cqw;
+  border-top: 1px solid #eef0fa;
+  font-size: 1.1cqw;
+  font-weight: 800;
+  color: #141b5a;
+}
+
+.biPaid {
+  display: flex;
+  align-items: center;
+  gap: 0.8cqw;
+  margin-top: 0.8cqw;
+  font-size: 0.95cqw;
+  font-weight: 700;
+  color: #16a34a;
+}
+
+.biPaid span {
+  padding: 0.3cqw 1.1cqw;
+  font-size: 0.85cqw;
+  color: #fff;
+  border-radius: 0.5cqw;
+  background: #16a34a;
+  opacity: 0;
+  animation: biFadeLate 12s ease-in-out infinite;
+}
+
+@keyframes biFadeLate {
+  0%, 38% { opacity: 0; transform: scale(0.9); }
+  48%, 90% { opacity: 1; transform: scale(1); }
+  97%, 100% { opacity: 0; transform: scale(1); }
+}
+
+.biFoot {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 2.2cqw;
+}
+
+.biFoot small {
+  font-size: 0.8cqw;
+  color: #475569;
+}
+
+/* simple QR-like pattern */
+.biQr {
+  width: 2.9cqw;
+  height: 2.9cqw;
+  background:
+    conic-gradient(from 90deg at 3px 3px, transparent 90deg, #141b5a 0) 0 0 / 0.58cqw 0.58cqw,
+    repeating-conic-gradient(#141b5a 0 25%, #fff 0 50%) 0 0 / 0.58cqw 0.58cqw;
+  border: 0.2cqw solid #141b5a;
+  border-radius: 0.2cqw;
+}
+
+/* ---------- Sent toast ---------- */
+.biToast {
+  position: absolute;
+  right: 4cqw;
+  bottom: 3.6cqw;
+  display: flex;
+  align-items: center;
+  gap: 1cqw;
+  padding: 0.9cqw 1.7cqw 0.9cqw 1cqw;
+  border-radius: 5cqw;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 1.4cqw 3cqw rgba(79, 70, 229, 0.2);
+  opacity: 0;
+  animation: biToastIn 12s ease-in-out infinite;
+}
+
+.biToast strong {
+  display: block;
+  font-size: 1cqw;
+  color: #141b5a;
+}
+
+.biToast small {
+  font-size: 0.8cqw;
+  color: #64748b;
+}
+
+.biToastIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.8cqw;
+  height: 2.8cqw;
+  font-size: 1.6cqw;
+  color: #fff;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0.5cqw 1.3cqw rgba(34, 197, 94, 0.4);
+}
+
+@keyframes biToastIn {
+  0%, 68%  { opacity: 0; transform: translateY(1cqw); }
+  78%, 90% { opacity: 1; transform: translateY(0); }
+  97%, 100% { opacity: 0; transform: translateY(-0.5cqw); }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .biHero * {
+    animation: none !important;
+  }
+
+  .biRow,
+  .biPaid span,
+  .biToast {
+    opacity: 1;
+  }
+}

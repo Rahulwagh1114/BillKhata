@@ -1,5 +1,6 @@
 import "./HomeInvoice.css";
 import sampleInvoice from "../../../assets/sampleInvoice.png"; // adjust path and file name
+import InvoiceIllustration from "./InvoiceIllustration";
 
 const steps = [
   {
@@ -48,7 +49,8 @@ function HomeInvoice() {
       </div>
 
       <div className="invoiceImageDiv">
-        <img src={sampleInvoice} alt="Invoice preview" />
+        {/* <img src={sampleInvoice} alt="Invoice preview" /> */}
+        <InvoiceIllustration/>
       </div>
     </section>
   );

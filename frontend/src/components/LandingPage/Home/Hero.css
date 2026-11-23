@@ -106,18 +106,12 @@
 }
 
 /* Right side */
+/* Right side */
 .heroImageDiv {
-  flex: 1.2;
+  flex: 1.5;
+  min-width: 0; /* lets the flex item shrink properly */
   display: flex;
   justify-content: center;
-}
-
-.heroImageDiv img {
-  width: 100%;
-  max-width: 720px;
-  height: auto;
-  border-radius: 16px;
-  box-shadow: 0 25px 60px rgba(79, 70, 229, 0.2);
 }
 
 /* Tablet / mobile */
@@ -132,4 +126,20 @@
   .heroChecks {
     justify-content: center;
   }
+
+  /* fixes the disappearing: no flex-basis 0 in column direction */
+  .heroImageDiv {
+    flex: none;
+    width: 100%;
+    display: block;
+    overflow-x: auto;          /* sideways scroll instead of tiny text */
+    padding-bottom: 12px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* keep the illustration at a readable size */
+  .heroImageDiv .bkHero {
+    min-width: 680px;
+  }
 }
+

@@ -47,16 +47,16 @@ function Navbar() {
         <div className={`navMenu ${isOpen ? "open" : ""}`}>
           <div className="optionsDiv">
             <ul>
-              <li><NavLink to="/" onClick={closeMenu}>Home</NavLink></li>
+              <li><NavLink to="/" end onClick={closeMenu}>Home</NavLink></li>
               <li><NavLink to="/features" onClick={closeMenu}>Features</NavLink></li>
-              <li><NavLink to="/pricing" onClick={closeMenu}>Pricing</NavLink></li>
+              <li><NavLink to="/pricing"  onClick={closeMenu}>Pricing</NavLink></li>
               <li><NavLink to="/dashboard" onClick={closeMenu}>Dashboard</NavLink></li>
             </ul>
           </div>
 
-          <div className="authDiv">
+          <div className="authDiv"> 
             {isLogin ? (
-              <a href="#" className="loginBtn" onClick={handleLogout}>
+              <a href="#" className="loginBtn" onClick={handleLogout}><i className="fa-solid fa-user"></i>
                 Logout <i className="fa-solid fa-right-from-bracket"></i>
               </a>
             ) : (
@@ -67,7 +67,7 @@ function Navbar() {
                   e.preventDefault();
                   setShowAutho(true);
                 }}
-              >
+              ><i className="fa-solid fa-user"></i>
                 Login <i className="fa-solid fa-right-to-bracket"></i>
               </a>
             )}
