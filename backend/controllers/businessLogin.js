@@ -202,6 +202,35 @@ try{
 }
 
 
+
+//==========================
+//Get login details
+//==========================
+
+export const getLoginDetials=async(req,res)=>{
+    try{
+       const loginData= await BusinessLogin.findById(req.businessLoginId).select(
+      "username businessName email mobile"
+    );
+
+
+    if(!loginData){
+        return res.status(404).json({error:"user not found"})
+    }
+     return res.json({
+      loginData: {
+        id: loginData._id,
+        username: loginData.username,
+        businessName: loginData.businessName,
+        email: loginData.email,
+        mobile: loginData.mobile,
+      },})
+
+    }catch(err){
+      return res.status(500).json({error:"internal server error"});
+    }
+}
+
 // =========================
 // REFRESH TOKEN
 // =========================

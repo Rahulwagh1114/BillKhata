@@ -11,6 +11,7 @@ import authRoutes from "./routes/businessLogin.js";
 import customerRoutes from "./routes/customer.js";
 import dashboardRoutes from "./routes/dashboard.js";
 import invoiceRoutes from "./routes/invoiceRoute.js";
+import productRoutes from "./routes/productRoute.js";
 
 app.use(cors({
   origin: "http://localhost:5173",
@@ -34,6 +35,7 @@ app.use("/api/billKhata",authRoutes);
 app.use("/api/billkhata",dashboardRoutes);
 app.use("/api/billkhata",customerRoutes);
 app.use("/api/billkhata",invoiceRoutes);
+app.use("/api/billkhata",productRoutes);
 
 
 app.listen(8080,()=>{
