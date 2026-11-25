@@ -119,7 +119,11 @@ useEffect(() => {
         <td>INV-{inv._id.slice(-6).toUpperCase()}</td>
         <td>₹{inv.totalAmount.toLocaleString("en-IN")}</td>
         <td>₹{inv.dueAmount.toLocaleString("en-IN")}</td>
-      <td>{inv.paymentStatus.charAt(0).toUpperCase() + inv.paymentStatus.slice(1)}</td>
+        <td>
+       <span className={`badge ${inv.paymentStatus}`}>
+     {inv.paymentStatus.charAt(0).toUpperCase() + inv.paymentStatus.slice(1)}
+     </span>
+     </td>
       </tr>
     ))
   )}

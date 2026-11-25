@@ -6,7 +6,7 @@ import {NavLink} from "react-router-dom";
 
 const menuItems = [
   { name: "Dashboard", icon: "fa-solid fa-house", path: "/dashboard", end: true },
-  { name: "Invoices", icon: "fa-solid fa-file-lines", path: "/dashboard/invoices" },
+  { name: "Invoices", icon: "fa-solid fa-file-lines", path: "/dashboard/invoicesAll" },
   { name: "Customers", icon: "fa-solid fa-user-group", path: "/dashboard/customers" },
   { name: "Products", icon: "fa-solid fa-bag-shopping", path: "/dashboard/products" },
   //   { name: "Inventory", icon: "fa-solid fa-boxes-stacked" },

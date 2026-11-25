@@ -23,6 +23,7 @@ function Customers() {
     };
     getAllCustomer();
   }, []);
+ 
 
   return (
     <main className="customerPage">
@@ -94,8 +95,14 @@ function Customers() {
                       title="Create Invoice"
                       onClick={(e) => {
                         e.stopPropagation();
-                        navigate("/dashboard/invoices", {
-                          state: { customerId: customer._id },
+                        navigate("/dashboard/invoicesAll/invoice", {
+                          state: {
+                            customer:{
+                              id:customer._id,
+                              name:customer.name,
+                              mobile:customer.mobile,
+                              address:customer.address
+                            } },
                         });
                       }}
                     >

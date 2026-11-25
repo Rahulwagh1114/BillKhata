@@ -68,7 +68,8 @@
 /* Green box → professional white card */
 .customerLedgerIcon {
   padding: 24px;
-  background: #ffffff;
+  /* background: #ffffff; */
+background: linear-gradient(135deg, #1E2A78, #263B9B, #4F46E5);
   border: 1px solid #eef0fa;
   border-radius: 16px;
   box-shadow: 0 8px 24px rgba(79, 70, 229, 0.07);
@@ -81,14 +82,16 @@
   gap: 14px;
   padding-bottom: 20px;
   margin-bottom: 20px;
-  border-bottom: 1px solid #eef0fa;
 }
 
-
+.customerLedgerIcon .ledgerIcon h2 {
+  color: #fff;
+}
 .customerLedgerIcon .ledgerIcon p {
   margin: 0;
   font-size: 0.85rem;
-  color: #64748b;
+  /* color: #64748b; */
+  color: #fff;
 }
 
 .userAvatar1 {
@@ -116,7 +119,8 @@
 .customerLedgerIcon .statCard {
   margin-top: 0;
   padding: 18px;
- background: #ebedf3;
+ /* background: #ebedf3; */
+ background:#fff;
   border: 1px solid #eef0fa;
   box-shadow: none;
 }
@@ -164,6 +168,7 @@
   background: #ffffff;
   border: 1px solid #eef0fa;
   border-radius: 14px;
+  cursor: pointer;
   box-shadow: 0 6px 20px rgba(79, 70, 229, 0.06);
   font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
@@ -246,11 +251,10 @@
 .ledgerTableDiv .badge {
   display: inline-block;
   padding: 4px 12px;
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   font-weight: 600;
   border-radius: 999px;
 }
-
 .ledgerTableDiv .badge.paid    { color: #15803d; background: #e8f9ef; }
 .ledgerTableDiv .badge.partial { color: #b45309; background: #fff4e0; }
 .ledgerTableDiv .badge.unpaid  { color: #e11d48; background: #ffeef1; }

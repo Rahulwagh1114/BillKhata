@@ -10,6 +10,7 @@ import Products from './components/Dashboard/Products';
 import { MyContext } from './MyContext';
 import { useState } from 'react';
 import ProtectedRoutes from './ProtectedRoutes';
+import InvoicesAll from './components/Dashboard/InvoicesAll';
 
 function App() {
   const [isLogin, setIsLogin] = useState(!!localStorage.getItem("accessToken"));
@@ -25,7 +26,8 @@ function App() {
         <Route element={<ProtectedRoutes/>}>
         <Route path="/dashboard" element={<Dashboard />}>
           <Route index element={<Hero />} />
-          <Route path="invoices" element={<Invoice />} />
+          <Route path="invoicesAll" element={<InvoicesAll/>}/>
+          <Route path="invoicesAll/invoice" element={<Invoice />} />
           <Route path="customers" element={<Customers/>}/>
           <Route path="customers/:id/ledger" element={<CustomerLedger/>}/>
           <Route path="products" element={<Products/>}/>

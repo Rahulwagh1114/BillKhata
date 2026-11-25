@@ -1,6 +1,7 @@
 import { useState } from "react";
 import api from "../../api";
 import "./Invoice.css";
+import { useLocation } from "react-router-dom";
 
 const productOptions = [
   { value: "pant", label: "Pant" },
@@ -36,7 +37,14 @@ const formatDate = (dateString) =>
   });
 
 function Invoice() {
-  const [customer, setCustomer] = useState({ name: "", mobile: "", address: "" });
+  const location=useLocation();
+  const selected=location.state?.customer ;
+
+  const [customer, setCustomer] = useState({
+  name: selected?.name || "",
+  mobile: selected?.mobile || "",
+  address: selected?.address || "", });
+
   const [rows, setRows] = useState([createRow()]);
   const [discount, setDiscount] = useState("");
   const [paymentStatus, setPaymentStatus] = useState("unpaid");
@@ -148,6 +156,7 @@ function Invoice() {
   // Backend me invoice save karta hai
   const saveInvoice = async () => {
     const payload = {
+      customerId: selected?.id || null, 
       name: customer.name,
       mobile: customer.mobile,
       address: customer.address,

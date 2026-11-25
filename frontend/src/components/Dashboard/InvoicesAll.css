@@ -1,0 +1,241 @@
+.InvoicesAllDiv{
+      flex: 1;
+  min-width: 0;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 28px 32px;
+  background-color: #ebedf3;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+.InvoicesAllDiv h1{
+     margin: 0 0 20px;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #141b5a;
+
+}
+.InvoicesAllDiv .searchBox1{
+     position: relative;
+  width: 100%;
+  max-width: 360px;
+}
+.searchIcon {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  transform: translateY(-50%);
+  font-size: 0.9rem;
+  color: #94a3b8;
+  pointer-events: none;
+  transition: color 0.2s;
+}
+
+.searchInput {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 11px 16px 11px 40px; /* left padding makes room for the icon */
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 0.92rem;
+  color: #1e293b;
+  background: #ffffff;
+  border: 1px solid #dfe3f3;
+  border-radius: 10px;
+  outline: none;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.05);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.searchInput::placeholder {
+  color: #94a3b8;
+}
+
+.searchInput:hover {
+  border-color: #c7cbff;
+}
+
+.searchInput:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.14);
+}
+
+/* Icon turns blue when the input is focused */
+.searchBox:focus-within .searchIcon {
+  color: #4f46e5;
+}
+
+
+.InvoicesAllDiv .searchAndInvoice{
+     display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+
+
+
+.InvoicesAllTableDiv {
+    margin-top: 20px;
+  width: 100%;
+   max-height: calc(100vh - 260px); /* table ki max height, screen ke hisaab se */
+  overflow: auto;
+  background: #ffffff;
+  border: 1px solid #eef0fa;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.06);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+.InvoicesAllTableDiv table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+}
+
+/* Header */
+.InvoicesAllTableDiv th {
+  padding: 14px 20px;
+  text-align: left;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: #64748b;
+  background: #f4f6ff;
+  white-space: nowrap;
+    position: sticky;
+  top: 0;
+  z-index: 2;
+  
+}
+
+/* Cells */
+.InvoicesAllTableDiv td {
+  padding: 14px 20px;
+  font-size: 0.92rem;
+  color: #334155;
+  border-bottom: 1px solid #eef0fa;
+  white-space: nowrap;
+}
+
+.InvoicesAllTableDiv tbody tr {
+  transition: background 0.2s;
+}
+
+.InvoicesAllTableDiv tbody tr:hover {
+  background: #f8f9ff;
+}
+
+.InvoicesAllTableDiv tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Column colors: 1 = name, 4 = pending, 5 = paid */
+.InvoicesAllTableDiv td:nth-child(1) {
+  font-weight: 600;
+  color: #141b5a;
+}
+
+.InvoicesAllTableDiv td:nth-child(3) {
+  font-weight: 600;
+}
+
+.InvoicesAllTableDiv td:nth-child(4) {
+  font-weight: 700;
+  color: #e11d48;
+}
+
+.InvoicesAllTableDiv td:nth-child(5) {
+  font-weight: 600;
+  color: #16a34a;
+}
+
+/* Action column (last) */
+.InvoicesAllTableDiv th:last-child,
+.InvoicesAllTableDiv td:last-child {
+  text-align: center;
+  width: 90px;
+}
+
+
+.InvoicesAllTableDiv .badge {
+  display: inline-block;
+  padding: 4px 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 999px;
+}
+
+
+.InvoicesAllTableDiv .badge.paid    { color: #15803d; background: #e8f9ef; }
+.InvoicesAllTableDiv .badge.partial { color: #b45309; background: #fff4e0; }
+.InvoicesAllTableDiv .badge.unpaid  { color: #e11d48; background: #ffeef1; }
+
+
+
+.btnInvoice button {
+  width: auto;              /* 75% hata diya */
+  min-width: 180px;         /* lamba karne ke liye */
+  height: 40px;             /* height kam */
+  padding: 0 28px;          /* upar-neeche padding 0, sirf side me */
+  white-space: nowrap;      /* text ek hi line me rahe */
+
+  background: linear-gradient(135deg, #535db5, #6c77e0);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(83, 93, 181, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btnInvoice button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(83, 93, 181, 0.5);
+  background: linear-gradient(135deg, #4a54a8, #5f6bd6);
+}
+
+.btnInvoice button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(83, 93, 181, 0.4);
+}
+
+.btnInvoice button:focus-visible {
+  outline: 3px solid rgba(83, 93, 181, 0.4);
+  outline-offset: 2px;
+}
+
+
+@media (max-width: 900px) {
+  .InvoicesAllTableDiv {
+    max-height: 300px;
+  }
+}
+
+
+
+/* ---------- Responsive ---------- */
+/* 
+@media (max-width: 1100px) {
+  .customerLedgerIcon .statCards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .customerLedgerIcon {
+    padding: 16px;
+  }
+
+  .customerLedgerIcon .statCards {
+    grid-template-columns: 1fr;
+  }
+} */
