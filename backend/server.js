@@ -7,6 +7,7 @@ import mongoose from "mongoose";
 import "dotenv/config";
 import cors from "cors";
 const app=express();
+const PORT = process.env.PORT || 8080;
 import authRoutes from "./routes/businessLogin.js";
 import customerRoutes from "./routes/customer.js";
 import dashboardRoutes from "./routes/dashboard.js";
@@ -38,6 +39,6 @@ app.use("/api/billkhata",invoiceRoutes);
 app.use("/api/billkhata",productRoutes);
 
 
-app.listen(8080,()=>{
-    console.log("server is listing on port",8080)
-})
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server running on port ${PORT}`);
+});
