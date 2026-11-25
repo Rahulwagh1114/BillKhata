@@ -86,6 +86,27 @@ export const updateProduct = async (req, res) => {
 
 
 
+//Get All products
+
+export const getAllProducts=async(req,res)=>{
+  try{
+   const allProducts=await Product.find({
+    owner: req.businessLoginId,
+      isActive: true,
+   }).sort({ createdAt: -1 });
+   
+    return res.status(200).json({
+      success: true,
+      count: allProducts.length,
+      allProducts,
+    });
+
+  }catch(error){
+    return res.status(404).json({error:"Products are not found"})
+  }
+}
+
+
 
 // Delete product (soft delete)
 export const deleteProduct = async (req, res) => {
@@ -111,3 +132,5 @@ export const deleteProduct = async (req, res) => {
     return res.status(500).json({ error: "Internal server error" });
   }
 };
+
+
