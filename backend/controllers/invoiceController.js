@@ -173,3 +173,23 @@ export const getCustomerInvoices = async (req, res) => {
     return res.status(500).json({ success: false, message: "Internal server error" });
   }
 };
+
+
+
+// get All invoices
+export const getInvoicesAll=async(req,res)=>{
+  try{
+    const invoicesAll=await Invoice.find({
+       owner: req.businessLoginId,
+    }).sort({createdAt:-1})
+
+    return res.status(200).json({
+      success:true,
+      count:invoicesAll.length,
+      invoicesAll
+    })
+
+  }catch(error){
+    return res.status(500).json({error:"Internal server error"});
+  }
+}
