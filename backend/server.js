@@ -14,10 +14,24 @@ import dashboardRoutes from "./routes/dashboard.js";
 import invoiceRoutes from "./routes/invoiceRoute.js";
 import productRoutes from "./routes/productRoute.js";
 
-app.use(cors({
-  origin: "http://localhost:5173",
-  credentials: true,
-}));
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://bill-khata1.vercel.app",
+];
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      // allow requests with no origin (Postman) and the listed origins
+      if (!origin || allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+      return callback(new Error("Not allowed by CORS"));
+    },
+    credentials: true,
+  })
+);
+
 app.use(cookieParser());
 
 app.use(express.json());
