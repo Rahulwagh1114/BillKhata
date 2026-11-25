@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Hero.css";
 import SalesOverview from "./SalesOverview";
+import api from "../../api";
+
 
 const stats = [
   {
@@ -44,11 +46,27 @@ const year = now.getFullYear();
 
 function Hero() {
     const [range, setRange] = useState(now.getMonth());
+    const [loginDetails,setLoginDetails]=useState();
+
+    useEffect(()=>{
+     const getLoginDetail= async()=>{
+      try{
+         const response=await api.get(`/loginDetail`)
+         setLoginDetails(response.data.loginData);
+      }catch(err){
+        console.log(err)
+      }
+     }
+     getLoginDetail();
+    },[])
+
+    
+
   return (
     <main className="heroDiv">
       <header className="heroTopItem">
         <div className="heroWelcome">
-          <h3>Welcome, Rahul 👋</h3>
+          <h3>Welcome, {loginDetails?.username} 👋</h3>
           <p>Here's what's happening with your business today.</p>
         </div>
 
@@ -71,8 +89,8 @@ function Hero() {
         
           <a href="/" className="heroHomeLink"> <i className="fa-solid fa-house"></i> Home</a>
           <div className="loginShow">
-            <span className="loginAvatar">R</span>
-            <span className="loginName">Rahul</span>
+            <span className="loginAvatar">{loginDetails?.businessName.charAt(0).toUpperCase()}</span>
+            <span className="loginName">{loginDetails?.businessName}</span>
           </div>
         </div>
       </header>

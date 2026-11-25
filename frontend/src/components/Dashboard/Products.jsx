@@ -1,18 +1,12 @@
 import { useState, useEffect } from "react";
 import "./Products.css";
-
-const initialProducts = [
-  { id: 1, name: "Cement (50 kg)", category: "Hardware", unit: "bag", rate: 400, stock: 120, gst: 18, description: "" },
-  { id: 2, name: "Paint (1 L)", category: "Hardware", unit: "pcs", rate: 800, stock: 40, gst: 18, description: "" },
-  { id: 3, name: "Brush", category: "Hardware", unit: "pcs", rate: 100, stock: 4, gst: 12, description: "" },
-  { id: 4, name: "Shirt", category: "Clothing", unit: "pcs", rate: 650, stock: 25, gst: 5, description: "" },
-];
+import api from "../../api";
 
 const units = ["pcs", "kg", "litre", "box", "bag", "meter", "dozen"];
 const gstOptions = [0, 5, 12, 18, 28];
 
 const emptyForm = {
-  name: "",
+  productName: "",
   category: "",
   unit: "pcs",
   rate: "",
@@ -24,33 +18,25 @@ const emptyForm = {
 const formatRupees = (value) => `₹${Number(value || 0).toLocaleString("en-IN")}`;
 
 function Products() {
-  const [products, setProducts] = useState(initialProducts);
+  const [products, setProducts] = useState([]);
   const [search, setSearch] = useState("");
   const [showForm, setShowForm] = useState(false);
   const [editingId, setEditingId] = useState(null);
   const [form, setForm] = useState(emptyForm);
   const [error, setError] = useState("");
 
-  const filtered = products.filter((p) => {
-    const q = search.toLowerCase();
-    return p.name.toLowerCase().includes(q) || p.category.toLowerCase().includes(q);
-  });
-
-  const openAdd = () => {
-    setEditingId(null);
-    setForm(emptyForm);
-    setError("");
-    setShowForm(true);
-  };
-
-  const openEdit = (product) => {
-    setEditingId(product.id);
-    setForm({ ...product });
-    setError("");
-    setShowForm(true);
-  };
-
-  const closeForm = () => setShowForm(false);
+  // Load products from the backend
+  useEffect(() => {
+    const loadProducts = async () => {
+      try {
+        const response = await api.get("/products");
+        setProducts(response.data.allProducts || []);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    loadProducts();
+  }, []);
 
   // Close the popup on Escape
   useEffect(() => {
@@ -62,50 +48,86 @@ function Products() {
     return () => document.removeEventListener("keydown", handleKey);
   }, [showForm]);
 
+  const filtered = products.filter((p) => {
+    const q = search.toLowerCase();
+    return (
+      (p.productName || "").toLowerCase().includes(q) ||
+      (p.category || "").toLowerCase().includes(q)
+    );
+  });
+
+  const openAdd = () => {
+    setEditingId(null);
+    setForm(emptyForm);
+    setError("");
+    setShowForm(true);
+  };
+
+  const openEdit = (product) => {
+    setEditingId(product._id);
+    setForm({
+      productName: product.productName,
+      category: product.category || "",
+      unit: product.unit,
+      rate: product.rate,
+      stock: product.stock,
+      gst: product.gst,
+      description: product.description || "",
+    });
+    setError("");
+    setShowForm(true);
+  };
+
+  const closeForm = () => setShowForm(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!form.name.trim()) {
-      setError("Product name is required.");
-      return;
-    }
-    if (!(Number(form.rate) > 0)) {
-      setError("Please enter a valid rate.");
-      return;
-    }
+    if (!form.name.trim()) return setError("Product name is required.");
+    if (!(Number(form.rate) > 0)) return setError("Please enter a valid rate.");
 
+    // field names match the backend schema
     const cleaned = {
-      ...form,
-      name: form.name.trim(),
+      productName: form.name.trim(),
       category: form.category.trim(),
+      unit: form.unit,
       rate: Number(form.rate),
       stock: Number(form.stock || 0),
       gst: Number(form.gst),
+      description: form.description,
     };
 
-    if (editingId) {
-      setProducts((prev) =>
-        prev.map((p) => (p.id === editingId ? { ...cleaned, id: editingId } : p))
-      );
-    } else {
-      // TODO: send `cleaned` to the backend API here
-      setProducts((prev) => [{ ...cleaned, id: Date.now() }, ...prev]);
-    }
-
-    closeForm();
-  };
-
-  const handleDelete = (product) => {
-    if (window.confirm(`Delete "${product.name}"?`)) {
-      // TODO: call the delete API here
-      setProducts((prev) => prev.filter((p) => p.id !== product.id));
+    try {
+      if (editingId) {
+        const res = await api.patch(`/products/update/${editingId}`, cleaned);
+        setProducts((prev) =>
+          prev.map((p) => (p._id === editingId ? res.data.product : p))
+        );
+      } else {
+        const res = await api.post("/products/addProduct", cleaned);
+        setProducts((prev) => [res.data.product, ...prev]);
+      }
+      closeForm();
+    } catch (err) {
+      setError(err.response?.data?.error || "Something went wrong.");
     }
   };
+
+  const handleDelete = async (product) => {
+    if (!window.confirm(`Delete "${product.productName}"?`)) return;
+    try {
+      await api.delete(`/products/delete/${product._id}`);
+      setProducts((prev) => prev.filter((p) => p._id !== product._id));
+    } catch (err) {
+      alert(err.response?.data?.error || "Delete failed.");
+    }
+  };
+
 
   return (
     <main className="prPage">
@@ -153,7 +175,7 @@ function Products() {
               filtered.map((p, index) => (
                 <tr key={p.id}>
                   <td>{index + 1}</td>
-                  <td className="prName">{p.name}</td>
+                  <td className="prName">{p.productName}</td>
                   <td>{p.category || "-"}</td>
                   <td>{p.unit}</td>
                   <td className="prRate">{formatRupees(p.rate)}</td>
@@ -213,9 +235,10 @@ function Products() {
                   id="name"
                   name="name"
                   placeholder="Enter product name"
-                  value={form.name}
+                  value={form.productName}
                   onChange={handleChange}
-                  autoFocus
+                   readOnly={!!editingId}
+                   autoFocus={!editingId}
                 />
               </div>
 
@@ -228,12 +251,13 @@ function Products() {
                   placeholder="e.g. Hardware"
                   value={form.category}
                   onChange={handleChange}
+                   readOnly={!!editingId}
                 />
               </div>
 
               <div className="prField">
                 <label htmlFor="unit">Unit</label>
-                <select id="unit" name="unit" value={form.unit} onChange={handleChange}>
+                <select id="unit" name="unit" value={form.unit} disabled={!!editingId} onChange={handleChange}>
                   {units.map((u) => (
                     <option key={u} value={u}>
                       {u}
